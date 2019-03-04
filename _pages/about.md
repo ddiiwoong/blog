@@ -4,6 +4,9 @@ title: About
 permalink: /about/
 ---
 
+김진웅(ddiiwoong) 입니다.
+기술이야기 듣는거 말하는거 공부하는거 좋아합니다.
+
 ## SK Holdings C&C
 
 * 2019.1 ~ 
