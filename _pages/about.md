@@ -2,6 +2,7 @@
 layout: single
 title: About
 permalink: /about/
+author_profile: true
 ---
 
 김진웅(ddiiwoong) 입니다.
