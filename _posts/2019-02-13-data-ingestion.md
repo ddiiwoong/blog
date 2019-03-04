@@ -1,5 +1,5 @@
 ---
-layout: draft
+layout: single
 title: "Data Injegstion"
 comments: true
 description: "데이터수집에 대한 스터디"
