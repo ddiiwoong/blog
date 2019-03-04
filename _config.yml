@@ -106,10 +106,10 @@ analytics:
 
 # Site Author
 author:
-  name             : "김진웅"
+  name             : "Jinwoong Kim"
   avatar           : "/assets/images/author.png" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Interested in Kubernetes and Serverless(FaaS), DevOps, SRE, ML/DL"
-  location         : "Seongnam,Korea"
+  location         : "South Korea"
   email            : # "ddiiwoong@gmail.com"
   links:
     - label: "Email"
@@ -117,7 +117,7 @@ author:
       url: mailto:ddiiwoong@email.com
     - label: "Website"
       icon: "fas fa-fw fa-link"
-      # url: "https://your-website.com"
+      url: "https://ddii.kr"
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
       url: "https://twitter.com/ddiiwoong"
