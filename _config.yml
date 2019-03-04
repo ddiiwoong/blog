@@ -98,9 +98,9 @@ social:
 
 # Analytics
 analytics:
-  provider               : false # false (default), "google", "google-universal", "custom"
+  provider               : "google-gtag" # false (default), "google", "google-universal", "custom"
   google:
-    tracking_id          :
+    tracking_id          : UA-135565677-1
     anonymize_ip         : # true, false (default)
 
 
@@ -109,7 +109,7 @@ author:
   name             : "Jinwoong Kim"
   avatar           : "/assets/images/author.png" # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "Interested in Kubernetes and Serverless(FaaS), DevOps, SRE, ML/DL"
-  location         : "South Korea"
+  location         : "Somewhere, Korea"
   email            : # "ddiiwoong@gmail.com"
   links:
     - label: "Email"
