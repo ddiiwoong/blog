@@ -1,19 +1,19 @@
 ---
 layout: single
-title: "2018 Retrospection"
+title: "2018 Retrospective"
 comments: true
 description: "18년도를 돌아보며..."
-keywords: "Retrospection, Planning"
+keywords: "Retrospective, Planning"
 categories:
-  - Retrospect
+  - Retrospective
 tags:
-  - retrospect
+  - Retrospective
   - 2018
   - Planning
   - Change
 ---
 
-한해가 또 훅 가버렸다. 18년도 retrospect 시작한다.
+한해가 또 훅 가버렸다. 18년도 Retrospective 시작한다.
 
 * Work
   * 17년까지 팀 막내였지만 새로운 부서로 이동하여 서비스개발 파트장을 맞게 되었음. 17년도에 개발이라고는 python를 사용하여 vmware vm을 openstack instance로 migration하는 프로젝트 및 kubernetes 기반 tensorflow 플랫폼을 개발하는 초보개발자 수준이였던 내가 인프라와 클라우드 플랫폼(openstack, vsphere, kubernetes) 경력이 인정되어 서비스 개발 파트를 맡게 되었다. 인생에서 가장 큰 변혁중 하나였다고 생각하고 항상 감사하는 마음으로 일을 하고 있다.  
