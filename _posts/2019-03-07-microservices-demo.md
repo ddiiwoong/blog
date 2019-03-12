@@ -17,7 +17,7 @@ tags:
 ---
 
 # Hipster Shop: Cloud-Native Microservices Demo Application
-[https://github.com/GoogleCloudPlatform/microservices-demo](https://github.com/GoogleCloudPlatform/microservices-demo)에서 소개된 Demo Application인 `Hipster Shop`을 Kubernetes 기반으로 배포하고 관련 오픈소스들을 더 알아보고자 한다. 
+[https://github.com/GoogleCloudPlatform/microservices-demo](https://github.com/GoogleCloudPlatform/microservices-demo)에서 소개된 Demo Application인 `Hipster Shop`을 Kubernetes 기반으로 배포하고 관련 오픈소스들을 더 알아보고자 한다..
 
 위 링크에 가서 보면 알수 있지만 `Hipster Shop` 아래 그림처럼 10개의 Microservice로 구성되어 있고 상품을 검색 및 구매할 수있는 웹 기반 이커머스 Application으로 구성 되어있다.
 
