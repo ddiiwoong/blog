@@ -2,6 +2,7 @@
 layout: single
 title: "Cloud-Native Microservices Demo Application with OpenCensus"
 comments: true
+classes: wide
 description: "Hipster Shop: Cloud-Native Microservices Demo Application 를 살펴보고 안에 들어있는 여러가지 오픈소스들을 알아본다"
 keywords: "Kubernetes, Istio, Stackdriver, gRPC, OpenCensus"
 categories:

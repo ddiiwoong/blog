@@ -2,6 +2,7 @@
 layout: single
 title: "Knative CLI - knctl"
 comments: true
+classes: wide
 description: "Knative CLI tool knctl에 대해 알아보자"
 keywords: "knative, Kubernetes, k8s, knative 설치, knative 구성, knctl"
 categories:

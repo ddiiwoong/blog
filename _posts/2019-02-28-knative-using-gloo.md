@@ -2,6 +2,7 @@
 layout: single
 title: "Knative with Gloo"
 comments: true
+classes: wide
 description: "Istio에 종속되어있는 Knative가 아닌 경량화된 Ingress 오픈소스 Gloo를 활용한 Knative 설치 및 활용"
 keywords: "Knative, Gloo, Istio, kubernetes, Serverless"
 categories:

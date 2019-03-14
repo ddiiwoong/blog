@@ -2,6 +2,7 @@
 layout: single
 title: "Spinnaker on Kubernetes #2"
 comments: true
+classes: wide
 description: "Spinnaker에 대해 알아봅니다 #2"
 keywords: "Spinnaker, Kubernetes, k8s, CI/CD, Continuous Delivery, Continuous Deployment"
 categories:

@@ -2,6 +2,7 @@
 layout: single
 title: "Provisioning Dedicated Game Server on Kubernetes Cluster"
 comments: true
+classes: wide
 description: "Provisioning Dedicated Game Server on Kubernetes Cluster"
 keywords: "Dedicated Game Server, Kubernetes, k8s, CI/CD, Continuous Delivery, Agones, Spinnaker"
 categories:

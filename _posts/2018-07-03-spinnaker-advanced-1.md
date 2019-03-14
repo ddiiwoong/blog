@@ -2,6 +2,7 @@
 layout: single
 title: "Spinnaker on Kubernetes #1"
 comments: true
+classes: wide
 description: "Spinnaker에 대해 알아봅니다 #1"
 categories:
   - Kubernetes
