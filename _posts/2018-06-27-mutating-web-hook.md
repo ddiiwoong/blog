@@ -1,5 +1,6 @@
 ---
 layout: single
+classes: wide
 title: "Mutating Webhook"
 description: "Mutating Webhook에 대해 알아봅니다"
 categories:
