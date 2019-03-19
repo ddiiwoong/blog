@@ -23,16 +23,16 @@ IntelliJ IDEA를 사용하다가 개발업무를 거의 손놓다시피 하다�
 
 ![cloud9](https://d1.awsstatic.com/product-marketing/Tulip/C9-Collab-Image@3x.e03a65d9488633c154358430540ab363dd1e8f45.png)
 
-AWS에서 서비스로 출시되기 이전에도 Dockerhub에서도 종종 확인할수 있었지만 현재는 찾아보기 어렵니다. 
+AWS에서 서비스로 출시되기 이전에도 Dockerhub에서도 종종 확인할수 있었지만 현재는 찾아보기 어렵다. 
 
 국내에는 Cloud 형태로 [GoormIDE](https://ide.goorm.io/) 제품이 있다.  
 Free 에디션도 있으니 따로 확인해보면 된다. (응원합니다!)
 
-이외에도 [https://github.com/theia-ide/theia](https://github.com/theia-ide/theia), [https://github.com/codercom/code-server](https://github.com/codercom/code-server)와 같은 Web기반 오픈소스가 존재하고 둘다 상용으로 제공되거나 Beta형태로 준비중이다. 
+이외에도 [https://github.com/theia-ide/theia](https://github.com/theia-ide/theia), [https://github.com/codercom/code-server](https://github.com/codercom/code-server)와 같은 Web기반 오픈소스가 존재하고 둘다 상용이나 Beta형태로 서비스 중이다. 
 
 ## code-server
 
-[code-server](https://github.com/codercom/code-server) 는 원격서버 형태로 동작하는 브라우저 기반 [VSCode](https://github.com/Microsoft/vscode) IDE이다.
+[code-server](https://github.com/codercom/code-server)는 원격서버 형태로 동작하는 브라우저 기반 [VSCode](https://github.com/Microsoft/vscode) IDE이다.
 
 그런데 왜 구지 VScode 설치형을 냅두고 Server로 구동하느냐? 아래와 같이 설명하고 있다.
 * Chromebook, Table(IPAD) 에서 Coding 가능
