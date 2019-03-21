@@ -5,8 +5,10 @@ permalink: /about/
 author_profile: true
 ---
 
-김진웅(ddiiwoong) 입니다.
-기술이야기 듣는거 말하는거 공부하는거 좋아합니다.
+김진웅(ddiiwoong)  
+
+기술이야기 듣는것, 말하는것, 공부하는것 좋아합니다.  
+저의 모든 행동,말,글이 주변 모든분들에게 동기부여가 되고 영감을 주는 촉매(觸媒)같은 사람이 되고 싶습니다.  
 
 ## SK Holdings C&C
 
@@ -15,6 +17,7 @@ author_profile: true
     * Data Tech Cell Platform Engineer
        * Machine Learning Platform 설계/구축
        * Data Lake Platform 설계/구축
+       * Content Management System 설계/구축
    * Tech.
      * Public Cloud : AWS, IBM Cloud, GCP, Azure
 
