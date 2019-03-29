@@ -24,25 +24,25 @@ Kubernetes Managed Service인 Amazon EKS가 2018년 7월 출시되고 2019년 1�
 
 ## eksworkshop.com
 
-[https://eksworkshop.com/](https://eksworkshop.com/)
+[https://eksworkshop.com/](https://eksworkshop.com/)  
 Kubernete를 처음접하는 유저를 위한 기본 개념과 아키텍처, 그리고 VPC, ALB를 활용하여 EKS에 대한 설치, 구성, 데모앱 배포 등을 해볼수 있는 튜토리얼 사이트이다.  
 
-[AWSKRUG](https://www.facebook.com/groups/awskrug/)에서 한글화 작업도 진행중이다. [한글화 링크](https://awskrug.github.io/eks-workshop/deploy/)
+[AWSKRUG](https://www.facebook.com/groups/awskrug/)에서 한글화 작업도 진행중이다.  [한글화 링크](https://awskrug.github.io/eks-workshop/deploy/)
 
 ## eksworkshop 따라하기전 사전 준비사항
 
 eksworkshop에서는 기본적으로 workshop이라는 신규 IAM 계정을 생성하고 Cloud9 Workspace 와 몇가지 설정들을 진행하지만 [AWS판교소모임](https://www.meetup.com/ko-KR/awskrug/events/260024327/)을 위해 최대한 비용이 드는 구성요소를 배제하고 작성하고자 한다.
 
 ### AWS account
-일단 문제는 Free Tier는 EKS를 활용할수 없다.  
+Free Tier는 EKS를 자유롭게 활용할수 없다.  
 관련 issue - [https://github.com/aws/containers-roadmap/issues/78](https://github.com/aws/containers-roadmap/issues/78)  
 
-실제 사용중인 계정이나 Credit이 확보된 계정에서 진행하도록 하자.
+실제 사용중인 계정이나 Credit이 확보된 계정이 필요하다.
 
 ### kubectl, aws-iam-authenticator
 
-* kubectl : kubernetes CLI (API)
-* aws-iam-authenticator : AWS IAM Authenticator를 설치하고 인증에 사용할 kubectl 구성
+* kubectl : kubernetes CLI
+* aws-iam-authenticator : AWS IAM Authenticator CLI
 
 #### kubectl config를 저장하기 위해 .kube directory를 생성
 
@@ -118,7 +118,7 @@ $ aws-iam-authenticator help
 
 ![mascot](https://github.com/weaveworks/eksctl/blob/master/logo/eksctl.png?raw=true)
 
-eksctl은 weaveworks에서 contribute하고 있는 오픈소스로 EKS 클러스터를 생성하는 간단한 CLI 도구이다. Go로 작성되고 있고 CloudFormation을 기본으로 동작한다.  
+eksctl은 weaveworks에서 contribute하고 있는 오픈소스로 EKS 클러스터를 생성하는 간단한 CLI 도구이다. Go로 작성되어 있고 CloudFormation을 기본으로 동작한다.  
 
 [https://eksctl.io/](https://eksctl.io/)  
 [https://github.com/weaveworks/eksctl](https://github.com/weaveworks/eksctl)
@@ -163,7 +163,7 @@ output=json
 ```
 
 ## EKS 배포
-kubectl, aws-iam-authenticator, eksctl, AWS CLI환경까지 구성되어 있으면 바로 배포가 가능하다.  
+kubectl, aws-iam-authenticator, eksctl, AWS 자격증명 환경까지 구성되어 있으면 바로 배포가 가능하다.  
 
 ```
 $ eksctl create cluster --name=eksworkshop-eksctl --nodes=3 --node-ami=auto
@@ -209,9 +209,13 @@ $ eksctl create cluster --name=eksworkshop-eksctl --nodes=3 --node-ami=auto
  
 ### Config File 사용
 
-[https://github.com/weaveworks/eksctl/tree/master/examples](https://github.com/weaveworks/eksctl/tree/master/examples)를 참고하여 `YAML`형태로 작성하여 배포가능하다.  
+[https://github.com/weaveworks/eksctl/tree/master/examples](https://github.com/weaveworks/eksctl/tree/master/examples)를 참고하여 `YAML`형태로 작성하여 배포가능하다. 
 
-기존에 관리하는 VPC subnet정보 및 AutoScaling, AZ(availabilityZones)설정, nodegroup 관리, node Instance에 preBootstrapCommand등을 미리 작성하여 실행하면 GitOps에서 활용도가 더욱 높아질수 있다.
+```
+$ eksctl create cluster -f example.yaml
+```
+
+기존에 관리하는 VPC subnet정보 및 AutoScaling, AZ(availabilityZones)설정, nodegroup 관리, node Instance에 preBootstrapCommand등을 아래 예시와 같이 미리 작성하면 GitOps측면에서 활용도가 더욱 높아질수 있다.
 
 #### 05-advanced-nodegroups.yaml
 ```
@@ -259,10 +263,6 @@ nodeGroups:
 
 # cluster AZs must be set explicitly for single AZ nodegroup example to work
 availabilityZones: ["eu-west-2a", "eu-west-2b", "eu-west-2c"]
-```
-
-```
-$ eksctl create cluster -f 05-advanced-nodegroups.yaml
 ```
 
 ## Kubernetes 대시보드 배포
