@@ -64,7 +64,7 @@ Log같은 경우 현재 미지원이지만 다음 메이저 릴리즈에 추가�
 
 ### minikube 기동
 최소 3 CPU, 6Gb Memory가 필요하다. 그냥 minikube를 구동시기면 4 CPU, 8Gb 로 구동이 되기 때문에 별다른 옵션 없이 default로 구동하면 된다. 
-```
+```bash
 $ minikube start
 $ kubectl get nodes
 NAME       STATUS    ROLES     AGE       VERSION
@@ -72,7 +72,7 @@ minikube   Ready     master    6h        v1.13.3
 ```
 
 ### Repository Clone
-```
+```bash
 $ git clone https://github.com/census-ecosystem/opencensus-microservices-demo.git
 $ cd opencensus-microservices-demo
 ```
@@ -90,7 +90,7 @@ Kubernetes 배포툴에 대해 비교한 글은 [블로그 링크](https://blog.
 
 기본적으로 구성을 하고자 하는 내용은 helm처럼 template 파일을 사용하게 되는데 프로젝트 root에 `skaffold.yaml` 에 build를 위한 image name, tag, src 위치등 기본적인 내용을 기재한다. 파일내용을 살펴보면 build에 관련된 내용들을 작성하고 deploy할 manifests의 위치까지 지정하도록 되어있다. 로컬환경에서 확인을 위해 grafana, prometheus, jaeger가 추가된 것을 확인할 수 있다.
 
-```
+```yaml
 apiVersion: skaffold/v1alpha2
 kind: Config
 build:
@@ -136,7 +136,7 @@ Go로 작성된 Frontend microservice을 살펴보자. [**./src/frontend/main.go
 ### library 추가 및 http handler 초기화
 
 Go기반 exporter 패키지(jaeger,prometheus)를 추가적으로 import 하고 http handler를 위한 [ochttp 패키지](https://godoc.org/go.opencensus.io/plugin/ochttp)를 추가하였다. 
-```
+```go
 import (
 ...
         "go.opencensus.io/exporter/jaeger"
@@ -164,7 +164,7 @@ func main() {
 예시처럼 각각의 서비스에 jaeger와 prometheus exporter Endpoint를 쉽게 등록할수 있다.  
 또한 initTracing() 에서는 데모를 위해 trace.AlwaysSample()을 사용하였다. 실제 운영환경에서는 [다음 링크](https://github.com/census-instrumentation/opencensus-specs/blob/master/trace/Sampling.md)를 참고해서 사용하는 것을 권고하고 있다. 
 
-```
+```go
 ...
 func initJaegerTracing(log logrus.FieldLogger) {
         // Register the Jaeger exporter to be able to retrieve
@@ -225,7 +225,7 @@ $ skaffold run
 
 에러없이 run이 실행되고 난후 minikube에 배포된 pod와 service를 확인한다. 중간에 loadgenerator가 init인 이유는 minikube 자원이 부족해서 발생하는 현상이다.
 
-```
+```bash
 $ kubectl get pod
 NAME                                     READY     STATUS     RESTARTS   AGE
 adservice-7c7d687dcb-xzr4m               1/1       Running    1          4h
@@ -269,7 +269,7 @@ shippingservice         ClusterIP      10.104.224.18    <none>        50051/TCP 
 ### 서비스 접속 및 Metric/Tracing 확인
 로컬 minikube환경이기 때문에 external service가 pending이므로 service를 minikube NAT IP로 expose 시킨다.
 
-```
+```bash
 $ minikube service frontend-external
 $ minikube service grafana-external
 $ minikube service jaeger-external
