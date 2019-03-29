@@ -46,12 +46,12 @@ Free Tier는 EKS를 자유롭게 활용할수 없다.
 
 #### kubectl config를 저장하기 위해 .kube directory를 생성
 
-```
+```bash
 $ mkdir -p ~/.kube
 ``` 
 
 #### kubectl 설치 (linux)
-```
+```bash
 $ sudo curl --silent --location -o /usr/local/bin/kubectl "https://amazon-eks.s3-us-west-2.amazonaws.com/1.11.5/2018-12-06/bin/linux/amd64/kubectl"
 $ sudo chmod +x /usr/local/bin/kubectl
 ```
@@ -59,7 +59,7 @@ $ sudo chmod +x /usr/local/bin/kubectl
 #### kubectl 설치 (MacOS Homebrew)
 MacOS는 brew로 설치하였다.  
 [https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-with-homebrew-on-macos](https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-with-homebrew-on-macos)
-```
+```bash
 $ brew install kubernetes-cli
 ```
 
@@ -71,14 +71,14 @@ $ brew install kubernetes-cli
 #### kubectl 설치 확인
 
 현재 MacOS에서는 1.11.7 버전이 설치되어 있다. (다른경로로 설치됨)
-```
+```bash
 $ kubectl version --short --client
 Client Version: v1.11.7-dispatcher
 ```
 
 #### aws-iam-authenticator 설치
 Amazon EKS는 IAM을 사용하여 Kubernetes용 AWS IAM Authenticator를 통해 Kubernetes 클러스터에 인증을 제공한다.  Go(버전 1.7이상)가 설치되어 있으면 아래와 같이 진행하면 된다. 
-```
+```bash
 $ go get -u -v github.com/kubernetes-sigs/aws-iam-authenticator/cmd/aws-iam-authenticator
 $ sudo mv ~/go/bin/aws-iam-authenticator /usr/local/bin/aws-iam-authenticator
 ```
@@ -93,24 +93,24 @@ MacOS: [https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/darw
 Windows: [https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/windows/amd64/aws-iam-authenticator.exe](https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/windows/amd64/aws-iam-authenticator.exe)
 
 ##### MacOS의 경우 
-```
+```bash
 $ curl -o aws-iam-authenticator https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/darwin/amd64/aws-iam-authenticator
 $ chmod +x ./aws-iam-authenticator
 $ cp ./aws-iam-authenticator $HOME/bin/aws-iam-authenticator && export PATH=$HOME/bin:$PATH
 ```
 
 ##### MacOS bash 환경변수 추가
-```
+```bash
 $ echo 'export PATH=$HOME/bin:$PATH' >> ~/.bash_profile
 ```
 
 ##### MacOS zsh 환경변수 추가
-```
+```bash
 $ echo 'export PATH=$HOME/bin:$PATH' >> ~/.zshrc
 ```
 
 #### aws-iam-authenticator binary 확인
-```
+```bash
 $ aws-iam-authenticator help
 ```
 
@@ -124,26 +124,26 @@ eksctl은 weaveworks에서 contribute하고 있는 오픈소스로 EKS 클러스
 [https://github.com/weaveworks/eksctl](https://github.com/weaveworks/eksctl)
 
 #### eksctl binary 다운로드
-```
+```bash
 $ curl --silent --location "https://github.com/weaveworks/eksctl/releases/download/latest_release/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
 $ sudo mv -v /tmp/eksctl /usr/local/bin
 ```
 
 #### MacOS Homebrew 설치
-```
+```bash
 $ brew tap weaveworks/tap
 $ brew install weaveworks/tap/eksctl
 ```
 
 #### eksctl 동작확인
-```
+```bash
 $ eksctl version
 ```
 
 #### CLI API 자격증명 구성
 
 사전설정한 aws configure가 있는지 확인. 기존 Terraform이나 kops 사용한적이 있으면 건너뛰어도 된다.  
-```
+```bash
 $ ls  ~/.aws
 ```
 없을경우 aws 자격증명을 생성한다.
@@ -165,7 +165,7 @@ output=json
 ## EKS 배포
 kubectl, aws-iam-authenticator, eksctl, AWS 자격증명 환경까지 구성되어 있으면 바로 배포가 가능하다.  
 
-```
+```bash
 $ eksctl create cluster --name=eksworkshop-eksctl --nodes=3 --node-ami=auto
 [ℹ]  using region ap-northeast-2
 [ℹ]  setting availability zones to [ap-northeast-2a ap-northeast-2c ap-northeast-2a]
@@ -211,14 +211,14 @@ $ eksctl create cluster --name=eksworkshop-eksctl --nodes=3 --node-ami=auto
 
 [https://github.com/weaveworks/eksctl/tree/master/examples](https://github.com/weaveworks/eksctl/tree/master/examples)를 참고하여 `YAML`형태로 작성하여 배포가능하다. 
 
-```
+```bash
 $ eksctl create cluster -f example.yaml
 ```
 
 기존에 관리하는 VPC subnet정보 및 AutoScaling, AZ(availabilityZones)설정, nodegroup 관리, node Instance에 preBootstrapCommand등을 아래 예시와 같이 미리 작성하면 GitOps측면에서 활용도가 더욱 높아질수 있다.
 
 #### 05-advanced-nodegroups.yaml
-```
+```yaml
 # An advanced example of ClusterConfig object with customised nodegroups:
 --- 
 apiVersion: eksctl.io/v1alpha4
@@ -270,19 +270,19 @@ availabilityZones: ["eu-west-2a", "eu-west-2b", "eu-west-2c"]
 Kubernetes 공식 대시보드는 기본으로 배포되지 않기 때문에 수동으로 배포해야한다. 설치 방법은 [공식 문서](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/)에서 확인가능하다.  
 
 위에서 구성된 클러스터에서 Kubernetes 대시보드를 배포한다.
-```
+```bash
 $ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
 ```
 
 접속을 위해 kube-proxy 기능을 활용하여 8080포트로 expose를 진행한다. 모든 인터페이스에서 필터링없이 접속이 가능하도록 옵션을 지정한다. 
 아래 명령은 터미널에서 백그라운드로 계속 동작한다.  
-```
+```bash
 $ kubectl proxy --port=8080 --address='0.0.0.0' --disable-filter=true &
 W0328 16:39:09.061754    9100 proxy.go:139] Request filter disabled, your proxy is vulnerable to XSRF attacks, please be cautious
 ```
 
 TOKEN으로 접속하기 위해 aws-iam-authenticator를 통해 해당 클러스터 token을 확인한다.  
-```
+```bash
 $ aws-iam-authenticator token -i eksworkshop-eksctl --token-only
 k8s-aws-v1.aHR0cHM6Ly9zdHMuYXAtbm9ydGhlYXN0LTIuYW1hem9uYXdzLmNvbS8_QWN0aW9uPUdldENhbGxlcklkZW50aXR5JlZlcnNpb249MjAxMS0wNi0xNSZYLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFKMjVNVjJSVVZQNlRWTURBJTJGMjAxOTAzMjglMkZhcC1ub3J0aGVhc3QtMiUyRnN0cyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMTkwMzI4VDA3NDEwNVomWC1BbXotRXhwaXJlcz0wJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCUzQngtazhzLWF3cy1pZCZYLUFtei1TaWduYXR1cmU9Yjc0NzkzYzUwOTU5NDYwMzMxMjY2YjExYWY4ODBkM2Q2OWQ5MWRhYzFhZWY1NjZmZTAwNTNlNWY2MTM0NGFlZQ
 ```
@@ -297,27 +297,28 @@ http://localhost:8080/api/v1/namespaces/kube-system/services/https:kubernetes-da
 
 ## Microservice app 배포
 가장 기본적인 [Sock Shop](https://microservices-demo.github.io/)을 배포하기 위해 Git Clone 수행
-```
+```bash
 $ git clone https://github.com/microservices-demo/microservices-demo.git sockshop
 $ cd sockshop/deploy/kubernetes
 ```
 
 `NodePort`로 되어있는 Front-End Service를 `LoadBalancer`로 수정한다.
-```
+```bash
 $ sed -i 's/NodePort/LoadBalancer/g' complete-demo.yaml
 $ cat complete-demo.yaml | grep LoadBalancer
  type: LoadBalancer
 ```
 
+
 namespace 생성 및 sock-shop 배포
-```
+```bash
 $ kubectl create namespace sock-shop
 $ kubectl apply -f complete-demo.yaml
 $ kubectl get all
 ```
 
 서비스 접속확인을 위해서는 ALB배포시간(DNS전파)이 일정 소요되므로 잠시후 접속을 시도한다.
-```
+```bash
 $ kubectl get svc
 NAME           TYPE           CLUSTER-IP       EXTERNAL-IP                                                                 PORT(S)        AGE
 carts          ClusterIP      10.100.84.58     <none>                                                                      80/TCP         1h
@@ -346,7 +347,7 @@ user-db        ClusterIP      10.100.87.142    <none>                           
 위에서 외부접속을 위해 LoadBalancer를 수동으로 설정하였으므로 EC2 - Load Balancer서 프로비저닝된 ALB를 삭제하고 진행해야 한다.  
 ALB 삭제가 완료되면 클러스터를 삭제하자.   
 
-```
+```bash
 $ eksctl delete cluster --name=eksworkshop-eksctl
 [ℹ]  deleting EKS cluster "eksworkshop-eksctl"
 [ℹ]  will delete stack "eksctl-eksworkshop-eksctl-nodegroup-ng-3af535b7"
