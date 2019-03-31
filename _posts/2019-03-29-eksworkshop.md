@@ -3,7 +3,7 @@ layout: single
 title: "eksworkshop"
 comments: true
 classes: wide
-description: "EKS에 대해서 살펴보고 eskworkshop 튜토리얼을 실행해보자"
+description: "eskworkshop 튜토리얼을 실행하고 간단한 Microservice앱을 배포해보자"
 keywords: "eksworkshop"
 categories:
   - Kubernetes
