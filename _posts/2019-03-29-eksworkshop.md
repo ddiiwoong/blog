@@ -16,7 +16,7 @@ tags:
   - Managed Kubernetes
 ---
 
-## Amazon ESK(Elastic Container Service for Kubernetes)
+## Amazon EKS (Elastic Container Service for Kubernetes)
 
 Kubernetes Managed Service인 Amazon EKS가 2018년 7월 출시되고 2019년 1월 정식으로 서울리전에 출시되었다. 개인적으로 완전관리형 Kubernetes 출시가 늦어져서 AWS 행보가 다소 늦다고 생각은 했으나 ALB와 VPC연동, 여러가지 기존 OpenSource와의 연결고리를 배제하고 자체 Managed서비스와 연동할것들이 많기 때문에 당연히 타사에 비해 늦어진걸로 보인다. 언제나 그랬지만 오픈소스를 받아들이는 느낌이 아니라 뭔가 완성된 제품을 쓰는 느낌(?)이다. 물론 불편한 부분과 감수해야할 내용들은 조금 있지만 기존 AWS 충성 User에게 호응을 얻을수 있기 때문이 아닐까라는 생각을 해보면서 포스팅을 시작하려고 한다.  
 
@@ -37,10 +37,17 @@ eksworkshop에서는 기본적으로 workshop이라는 신규 IAM 계정을 생�
 Free Tier는 EKS를 자유롭게 활용할수 없다.  
 관련 issue - [https://github.com/aws/containers-roadmap/issues/78](https://github.com/aws/containers-roadmap/issues/78)  
 
-실제 사용중인 계정이나 Credit이 확보된 계정이 필요하다.
+실제 사용중인 계정이나 Credit이 확보된 계정이 필요하다.  
+
+### IAM 설정 (JSON template)
+EKSworkshop에서는 Full administrator 계정을 필요로 하지만 eksctl로 배포를 진행하므로 그 기준으로 IAM설정을 진행한다.  
+
+EC2권한을 최소한으로 주어야 하지만 설정이 너무 복잡해질것 같았고, [terraform eks iam 설정](https://github.com/terraform-aws-modules/terraform-aws-eks/blob/master/examples/eks_test_fixture/README.md)을 참고하려고 했지만 eksctl과 terraform과의 약간 다른 방식의 배포로 인해 어쩔수없이 EKS Full Access권한을 할당하였다.  
+(다른 유경험자의 도움이 필요한 상황 ㅠㅠ)
+
+자세한 JSON 내용은 [링크](https://github.com/ddiiwoong/eksworkshop/blob/master/iam_for_eksworkshop.json)를 참고한다.  
 
 ### kubectl, aws-iam-authenticator
-
 * kubectl : kubernetes CLI
 * aws-iam-authenticator : AWS IAM Authenticator CLI
 
