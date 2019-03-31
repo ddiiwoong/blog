@@ -42,7 +42,7 @@ Free Tier는 EKS를 자유롭게 활용할수 없다.
 ### IAM 설정 (JSON template)
 EKSworkshop에서는 Full administrator 계정을 필요로 하지만 eksctl로 배포를 진행하므로 그 기준으로 IAM설정을 진행한다.  
 
-EC2권한을 최소한으로 주어야 하지만 설정이 너무 복잡해질것 같았고, [terraform eks iam 설정](https://github.com/terraform-aws-modules/terraform-aws-eks/blob/master/examples/eks_test_fixture/README.md)을 참고하려고 했지만 eksctl과 terraform과의 약간 다른 방식의 배포로 인해 어쩔수없이 EKS Full Access권한을 할당하였다.  
+[terraform eks iam 설정](https://github.com/terraform-aws-modules/terraform-aws-eks/blob/master/examples/eks_test_fixture/README.md)을 참고하려고 했지만 eksctl과 terraform과의 약간 다른 방식의 배포로 인해 어쩔수없이 EKS Full Access권한을 할당하였다.  
 (다른 유경험자의 도움이 필요한 상황 ㅠㅠ)
 
 자세한 JSON 내용은 [링크](https://github.com/ddiiwoong/eksworkshop/blob/master/iam_for_eksworkshop.json)를 참고한다.  
