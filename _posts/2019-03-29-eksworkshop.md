@@ -142,6 +142,11 @@ $ brew tap weaveworks/tap
 $ brew install weaveworks/tap/eksctl
 ```
 
+#### Windows 설치 (PowerShell, chocolatey)
+```
+chocolatey install eksctl
+```
+
 #### eksctl 동작확인
 ```bash
 $ eksctl version
