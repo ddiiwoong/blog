@@ -19,7 +19,7 @@ author_profile: true
        * Data Lake Platform 설계/구축
        * Content Management System 설계/구축
    * Tech.
-     * Public Cloud : AWS, IBM Cloud, GCP, Azure
+     * Public Cloud : AWS, IBM Cloud
 
 * 2018.1 ~ 2018.12
   * Cloud Service Development Team(First Half), Cloud Z Unit(Second Half)
@@ -30,7 +30,7 @@ author_profile: true
       * Cloud Z Composer (https://skcloud.github.io/zcomposer/)
     * Cloud Z Service Platform Landing Page Dev. (https://skcloud.github.io/)
     * Dedicated Game Server Hosting on K8s R&D (https://github.com/GoogleCloudPlatform/agones)
-  * Tech.
+  * Experience
     * Public Cloud : AWS, DigitalOcean, IBM Cloud, GCP, Azure, Cloud Z
     * Private Cloud : vSphere 6.0, OpenStack Newton
     * Provisioning : Harbor, Ansible, Portus, Clair, Kubicorn, Terraform, Vault
@@ -51,7 +51,7 @@ author_profile: true
         * vSphere -> OpenStack Migration Platfrom Develop
       * Deep Learning Platform Develop
         * Nvidia Tesla GPU Cloud Platform Develop
-  * Tech.
+  * Experience
     * Public Cloud : IBM Cloud, Cloud Z
     * Private Cloud : vSphere 6.5, OpenStack Newton
     * Provisioning : Harbor, Ansible
