@@ -70,9 +70,12 @@ MacOS는 brew로 설치하였다.
 $ brew install kubernetes-cli
 ```
 
-#### kubectl 설치 (windows)
-실제 구동해보지 않아 아래 가이드 링크를 확인하면 된다.
+#### kubectl 설치 (windows PowerShell)
 [https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/install-kubectl.html](https://docs.aws.amazon.com/ko_kr/eks/latest/userguide/install-kubectl.html)
+
+```
+curl -o kubectl.exe https://amazon-eks.s3-us-west-2.amazonaws.com/1.10.3/2018-07-26/bin/windows/amd64/kubectl.exe
+```
 
 
 #### kubectl 설치 확인
