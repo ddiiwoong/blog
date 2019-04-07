@@ -367,9 +367,7 @@ $ kubectl get svc --all-namespaces
 $ kubectl delete svc front-end
 ```
 
-이후에 VPC로 이동하여 
-
-ALB와 VPC 삭제가 완료되면 클러스터를 삭제하자.  
+ALB와 VPC 삭제가 완료된것을 확인하고 클러스터를 삭제하자.  
 
 ```bash
 $ eksctl delete cluster --name=eksworkshop-eksctl
