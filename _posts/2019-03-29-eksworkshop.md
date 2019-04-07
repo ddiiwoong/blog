@@ -360,7 +360,16 @@ user-db        ClusterIP      10.100.87.142    <none>                           
 ## EKS 클러스터 및 삭제
 
 위에서 외부접속을 위해 LoadBalancer를 수동으로 설정하였으므로 EC2 - Load Balancer서 프로비저닝된 ALB를 삭제하고 진행해야 한다.  
-ALB 삭제가 완료되면 클러스터를 삭제하자.   
+
+클러스터에서 실행 중인 모든 서비스를 다시 확인하고 EXTERNAL-IP값과 연결된 모든 서비스를 삭제한다.  
+```bash
+$ kubectl get svc --all-namespaces
+$ kubectl delete svc front-end
+```
+
+이후에 VPC로 이동하여 
+
+ALB와 VPC 삭제가 완료되면 클러스터를 삭제하자.  
 
 ```bash
 $ eksctl delete cluster --name=eksworkshop-eksctl
