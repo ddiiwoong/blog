@@ -30,7 +30,7 @@ tags:
 
 ### Knative 다시 살펴보기
 
-[앞선 포스팅에서도 이야기](https://ddiiwoong.github.io/2018/knative/) 했지만 기존 FaaS(AWS Lambda, Google Cloud Funtions, Azure Function) 과는 다른 Serverless 개념으로 받아들어야 한다.
+[앞선 포스팅에서도 이야기](https://ddii.dev/kubernetes/knative/) 했지만 기존 FaaS(AWS Lambda, Google Cloud Funtions, Azure Function) 과는 다른 Serverless 개념으로 받아들어야 한다.
 
 다시 한번 특징을 나열해보면 아래와 같다.
 
