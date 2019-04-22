@@ -5,9 +5,9 @@ permalink: /presentation/
 author_profile: true
 ---
 
-* 2017
-  * 7월 SK Broadband 미디어아카데미 
-    * 클라우드 인프라 구성 및 아키텍처
+* 2019
+  * 4월 AWS Korea User Group 판교소모임
+    * [Amazon EKS Workshop 살펴보기](https://www.slideshare.net/JinwoongKim8/eks-workshop-140043415)
 * 2018
   * 4월 SK C&C Cloud Tech 
     * 컨테이너 기반 SaaS 개발을 위한 고려사항
@@ -29,3 +29,7 @@ author_profile: true
     * [Continuous Delivery using Spinnaker on Kubernetes Multi Cluster](http://public.dhe.ibm.com/software/kr/TrackB/B3.pdf)
   * 11월 "Kubernetes Meetup" 1Day
     * [Spinnaker on Kubernetes](https://www.slideshare.net/JinwoongKim8/spinnaker-on-kubernetes-123752186)
+
+* 2017
+  * 7월 SK Broadband 미디어아카데미 
+    * 클라우드 인프라 구성 및 아키텍처
