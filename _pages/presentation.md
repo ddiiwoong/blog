@@ -10,6 +10,9 @@ author_profile: true
     * [Amazon EKS Workshop 살펴보기](https://www.slideshare.net/JinwoongKim8/eks-workshop-140043415)
   * 4월 Kubernetes Korea Group 모니터링 소모임
     * [Opencensus with prometheus and kubernetes](https://www.slideshare.net/JinwoongKim8/open-census-with-prometheus-and-kubernetes)
+  * 4월  Google Cloud Next '19 Extended Korea
+    * [Knative로 서버리스 워크로드 구현](https://www.slideshare.net/JinwoongKim8/knative)
+
 * 2018
   * 4월 SK C&C Cloud Tech 
     * 컨테이너 기반 SaaS 개발을 위한 고려사항
