@@ -22,3 +22,7 @@ main:
     url: /about/
   - title: "Presentation"
     url: /presentation/
+  - title: "Study"
+    url: /study/
+  - title: "Ads"
+    url: /ads/
