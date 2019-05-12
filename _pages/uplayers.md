@@ -1,12 +1,9 @@
 ---
 layout: single
 title: "V50과 U+5G 그리고 U+프로야구5G"
-comments: true
+permalink: /uplayers/
 classes: wide
 description: "LG V50 개봉 및 5G프리미엄 요금제 체험"
-keywords: "ads"
-categories:
-  - uplayers
 tags:
   - V50
   - U+5G

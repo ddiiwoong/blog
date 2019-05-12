@@ -314,6 +314,17 @@ defaults:
       share: true
       related: true
 
+  # _uplayers
+  - scope:
+      path: ""
+      type: uplayers
+    values:
+      layout: posts
+      author_profile: false
+      comments: true
+      share: true
+      related: true
+
 collections:
   study:
     output: true
