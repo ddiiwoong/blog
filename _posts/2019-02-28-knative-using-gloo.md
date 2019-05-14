@@ -43,7 +43,7 @@ Knative에서는 앞선 Knative 관련 포스팅에서도 설명했듯이 `Autom
 
 ## Istio 
 Knative는 기본적으로 Ingress Gateway기능을 탑재하고 있는데 이는 Istio의 기능중 하나다.  
-Istio는 다음과 같은 Core Feature를 가진다. 상세한 내용은 https://istio.io/docs/concepts/what-is-istio/ 에서 확인하면 된다.
+Istio는 다음과 같은 Core Feature를 가진다. 상세한 내용은 [https://istio.io/docs/concepts/what-is-istio/](https://istio.io/docs/concepts/what-is-istio/) 에서 확인하면 된다.
 
 * Traffic management
 * Security
@@ -81,7 +81,7 @@ Knative API Gateway 로서 Istio가 아닌 Gloo가 조금더 경량화된 대안
 ### Install Glooctl
 
 gloo CLI (glooctl) Download  
-https://github.com/solo-io/gloo/releases
+[https://github.com/solo-io/gloo/releases](https://github.com/solo-io/gloo/releases)
 
 또는 직접 Download
 ```
