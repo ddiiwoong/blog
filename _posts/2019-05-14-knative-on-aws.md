@@ -4,7 +4,7 @@ title: "Knative on EKS"
 comments: false
 classes: wide
 description: "EKS에서도 Knative를 구성해보자"
-keywords: "knative, Kubernetes, k8s, knative 설치, knative 구성, aws"
+keywords: "Knative, Kubernetes, k8s, AWS, EKS, Serverless, FaaS"
 categories:
   - Kubernetes
 tags:
@@ -14,18 +14,19 @@ tags:
   - AWS
   - Lambda
   - Serverless
-  - CRDs
+  - EKS
 ---
 
 이번에는 Knative를 EKS에 구성해보려고 한다. 4월은 발표 및 여러가지 업무로 인해서 포스팅을 할 시간이 부족했지만 5월부터 조금씩 여유가 생겨서 더 바빠지기전에 좀 써보려고 한다. 사실 [Facebook @최용호](https://www.facebook.com/yongho1037)님께서 한번 해보는것도 좋겠다고 하셔서 고민하다가 실제 사용중인 Batch와의 비교 그리고 여러가지 AWS에서의 고려사항을 적어본다.
 
 ## Knative on EKS
 
-제목만 보면 Lambda나 ECS, Batch 서비스가 있는데 왜 이걸 써야하지? 라는 생각부터 하는 사람도 있을것 같다. 하지만 이전 포스팅들과 발표에서도 여러번 이야기 한것처럼 간단하게 서버리스 워크로드를 빌드, 배포, 관리하기 위한 Kubernetes기반 FaaS플랫폼이고 현재 [CNCF Landscape](https://landscape.cncf.io/)에서 가장 빠른 속도로 개발되고 있는 오픈소스 프로젝트 중 하나이다.
+제목만 보면 Lambda나 ECS, Batch 서비스가 있는데 왜 이걸 써야하지? 라는 생각부터 하는 사람도 있을것 같다. 하지만 이전 포스팅들과 발표에서도 여러번 이야기 한것처럼 Knative는 간단하게 서버리스 워크로드를 빌드, 배포, 관리하기 위한 Kubernetes기반 FaaS플랫폼이고 현재 [CNCF Landscape](https://landscape.cncf.io/)에서 가장 빠른 속도로 개발되고 있는 오픈소스 프로젝트 중 하나이다.
 
 ## EKS 배포
 
-앞선 [eksworkshop 포스팅](https://ddii.dev/kubernetes/eksworkshop/)에서처럼 간단한 배포를 위해 eksctl로 2node 클러스터를 배포한다. 사전 준비사항은 위 포스팅이나 [https://eksctl.io/](https://eksctl.io/)을 참고하자.  
+앞선 [eksworkshop 포스팅](https://ddii.dev/kubernetes/eksworkshop/)에서처럼 간단한 배포를 위해 `eksctl`로 2-node 클러스터를 배포한다.  
+사전 준비사항은 [이전 포스팅](https://ddii.dev/kubernetes/eksworkshop/)이나 [https://eksctl.io/](https://eksctl.io/)을 참고하자.  
 
 ```sh
 $ eksctl create cluster --name=eksworkshop-eksctl --nodes=2 --node-ami=auto
@@ -150,8 +151,6 @@ in-memory-channel-dispatcher-7684cd7c7d-ftqhc   2/2       Running   2          1
 webhook-d496c66bd-688xz                         1/1       Running   0          11m
 ```
 
-모니터링 리소스도 확인한다.
-
 ```sh
 $ kubectl get pods -n knative-monitoring 
 NAME                                  READY     STATUS    RESTARTS   AGE
@@ -166,6 +165,12 @@ prometheus-system-0                   1/1       Running   0          14m
 prometheus-system-1                   1/1       Running   0          14m
 ```
 
+모니터링 리소스도 확인한다. 위의 리소스를 보면 Fluentd가 배포되지 않은 상태이므로 DaemonSet으로 동작할수 있도록 아래와 같이 설정하면 DaemonSet을 확인할 수 있다.  
+
+```sh
+$ kubectl label nodes --all beta.kubernetes.io/fluentd-ds-ready="true"
+```
+
 ## Build에서 사용할 Docker Credential 설정
 
 일단 Knative Build를 수행할때 일반적으로 Container Registry를 많이 사용하기 때문에 Regitsry Credential 설정을 해야한다.  
@@ -176,7 +181,7 @@ ECR의 경우 [https://github.com/knative/build-templates](https://github.com/kn
 
 [https://github.com/ddiiwoong/hello-python.git](https://github.com/ddiiwoong/hello-python.git)
 
-docker-secret.yaml 파일을 보면 dockerhub push를 위해 basic-auth를 수행하게 되는데 dockerhub id/password 를 base64로 encoding해서 Secret으로 저장을 한다.  
+`docker-secret.yaml` 을 보면 dockerhub push를 위해 basic-auth를 수행하게 되는데 dockerhub id/password 를 base64로 encoding해서 Secret으로 저장을 한다.  
 
 ```yaml
 apiVersion: v1
@@ -193,7 +198,7 @@ data:
   password: BASE64_ENCODED_PASSWORD
 ```
 
-그리고 ServiceAccount `build-bot`을 생성하기 위한 yaml(sa.yaml)를 작성한다.  
+그리고 ServiceAccount `build-bot`을 생성하기 위한 yaml (sa.yaml)를 작성한다.  
 
 ```yaml
 apiVersion: v1
@@ -204,7 +209,7 @@ secrets:
   - name: basic-user-pass
 ```
 
-위에서 작성한 Secret과 ServiceAccount를 배포한다.  
+위에서 작성한 Secret(basic-user-pass)과 ServiceAccount(build-bot)를 배포한다.  
 
 
 ```sh
@@ -214,7 +219,7 @@ $ kubectl apply -f sa.yaml
 serviceaccount "build-bot" created
 ```
 
-Secret(basic-user-pass)과 ServiceAccount(build-bot)를 확인한다.
+저장된 Secret(basic-user-pass)과 ServiceAccount(build-bot)를 확인한다.
 
 ```sh
 $ kubectl get secret
@@ -280,9 +285,7 @@ CMD ["app.py"]
 ## Knative Build 
 
 미리 Dockerhub에서 `hello-python` repository(docker.io/ddiiwoong/hello-python)를 생성한다.  
-
-그리고 위에서 생성한 `build-bot` 계정과 image tag `hello-python`정보를 Build template에 작성하여 배포한다. 
-
+그리고 위에서 생성한 `build-bot` 계정과 image tag `hello-python`정보를 Build template에 작성하여 배포한다.  
 아래 Knative Build 과정은 `kaniko executor`를 사용하여 다음과 같은 과정을 수행한다.  
 1. `spec.source` 에서 Source Clone (git)를 수행하고 이후  
 2. `spec.steps` 에서 Docker Build, Tag, Registry Login, Push를 수행한다.  
@@ -369,9 +372,9 @@ NAME                   TYPE           CLUSTER-IP      EXTERNAL-IP               
 istio-ingressgateway   LoadBalancer   10.100.208.80   a220723d475df11e980220a02e220b34-2021915778.ap-northeast-2.elb.amazonaws.com   80:31581/TCP,443:31490/TCP,31400:30367/TCP,15011:32495/TCP,8060:31418/TCP,853:30310/TCP,15030:32405/TCP,15031:31410/TCP   13h
 ```
   
-a220723d475df11e980220a02e220b34-2021915778.ap-northeast-2.elb.amazonaws.com  
+ALB: a220723d475df11e980220a02e220b34-2021915778.ap-northeast-2.elb.amazonaws.com  
 
-위와 같이 LoadBalancer로 배포되기 때문에 ALB가 생성되므로 추후 eksctl로 클러스터를 삭제하기 전에 반드시 LoadBalancer 형태로 배포된 서비스를 삭제하고 진행해야 한다.  
+위와 같이 AWS LoadBalancer로 배포면 ALB가 자동으로 생성되므로 추후 eksctl로 클러스터를 삭제하기 전에 반드시 LoadBalancer 형태로 배포된 서비스를 삭제하고 진행해야 한다.  
 
 Knative Service를 확인한다. 
 ```sh
@@ -398,6 +401,6 @@ Hello World: Python Sample v1 with Knative on EKS!
 
 현재 몸담고 있는 최근 프로젝트에서 Lambda, ECS, Batch 등을 사용하는 경우가 많아졌는데 실제 엔터프라이즈에서 정해진 자원내에서 정해진 일을 할때는 매니지드 서비스가 적합하다고 생각한다. 하지만 On-Premise 또는 그에 준하는 Kubernetes 클러스터를 운영하는 조직에서는 Knative를 사용하여 컨테이너 기반 서비리스 워크로드를 구현하는 것이 향후 Hybrid 관점에서 확장성과 벤더 종속성을 제거하는데 큰 도움이 될것이라 생각한다.  
 
-조금씩 Kubernetes 및 생태계 Learning에 대한 피로도가 증가하고 있고 Hype Driven Development(HDD)가 되는것 같아서 아쉬운 부분은 있지만 현재 가장 핫한 기술이고 관심도가 높기 때문에 배워두면 언젠가는 써먹게 될거라 확신한다.  
+조금씩 Kubernetes 및 생태계 Learning에 대한 피로도가 증가하고 있고 Hype Driven Development(설레발 주도개발)가 되는것 같아서 아쉬운 부분은 있지만 현재 가장 핫한 기술이고 관심도가 높기 때문에 배워두면 언젠가는 써먹게 될거라 확신한다.  
 
 다시한번 Conference driven development(architecture)가 되지 않도록 자중하고 Loudest Guy가 되지 않도록 조심해야할 것 같다.  
