@@ -43,7 +43,7 @@ ip-192-168-78-204.ap-northeast-2.compute.internal   Ready     <none>    2m      
 
 ## istio 설치
 
-Knative는 istio 의존성을 가지고 있기 때문에 Istio를 먼저 배포한다. 물론 [이전 포스팅](https://ddii.dev/kubernetes/knative-using-gloo/)에서 설명한것 처럼 Gloo를 사용해도 되지만 이번에는 istio를 설치하였다.  
+Knative는 istio 의존성을 가지고 있기 때문에 Istio를 먼저 배포한다. 물론 [이전 포스팅](https://ddii.dev/kubernetes/knative-using-gloo/)에서 설명한것 처럼 Gloo를 사용해도 되지만 이번에는 Istio를 설치하였다.  
 
 ```sh
 $ kubectl apply -f https://github.com/knative/serving/releases/download/v0.5.0/istio-crds.yaml 
@@ -102,7 +102,7 @@ namespace/default labeled
 
 $ kubectl get namespaces --show-labels
 NAME           STATUS    AGE       LABELS
-default        Active    43m       <none>
+default        Active    43m       istio-injection=enabled
 istio-system   Active    27m       istio-injection=disabled
 kube-public    Active    43m       <none>
 kube-system    Active    43m       <none>
@@ -173,15 +173,15 @@ $ kubectl label nodes --all beta.kubernetes.io/fluentd-ds-ready="true"
 
 ## Build에서 사용할 Docker Credential 설정
 
-일단 Knative Build를 수행할때 일반적으로 Container Registry를 많이 사용하기 때문에 Regitsry Credential 설정을 해야한다.  
+일단 Knative Build를 수행할때 일반적으로 Container Registry를 많이 사용하기 때문에 Registry Credential 설정을 해야한다.  
 
-ECR의 경우 [https://github.com/knative/build-templates](https://github.com/knative/build-templates)의 ecr_helper를 사용하면 쉽게 ECR account를 설정할 수 있지만 `Serving`단계에서 401에러가 나는 이유를 잡지 못해서 일단 Dockerhub를 가지고 진행하기로 한다.  
+ECR의 경우 [https://github.com/knative/build-templates](https://github.com/knative/build-templates)의 ecr_helper를 사용하면 쉽게 ECR account를 설정할 수 있지만 `Serving`단계에서 401에러가 나는 이유를 잡지 못해서 일단 Dockerhub를 가지고 진행하였다.
 
 간단한 데모코드는 아래 repository에 미리 작성해놨다.  
 
 [https://github.com/ddiiwoong/hello-python.git](https://github.com/ddiiwoong/hello-python.git)
 
-`docker-secret.yaml` 을 보면 dockerhub push를 위해 basic-auth를 수행하게 되는데 dockerhub id/password 를 base64로 encoding해서 Secret으로 저장을 한다.  
+`docker-secret.yaml` 을 보면 dockerhub push를 위해 basic-auth를 수행하게 되는데 dockerhub id/password 를 base64로 encoding해서 Secret으로 저장한다.  
 
 ```yaml
 apiVersion: v1
