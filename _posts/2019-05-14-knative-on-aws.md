@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "Knative on EKS"
-comments: false
+comments: true
 classes: wide
 description: "EKS에서도 Knative를 구성해보자"
 keywords: "Knative, Kubernetes, k8s, AWS, EKS, Serverless, FaaS"
