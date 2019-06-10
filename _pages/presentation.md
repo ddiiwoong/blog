@@ -12,6 +12,8 @@ author_profile: true
     * [Opencensus with prometheus and kubernetes](https://www.slideshare.net/JinwoongKim8/open-census-with-prometheus-and-kubernetes)
   * 4월  Google Cloud Next '19 Extended Korea
     * [Knative로 서버리스 워크로드 구현](https://www.slideshare.net/JinwoongKim8/knative)
+  * 6월 Korea DevOps MeetUP '19 - 4월 발표 수정
+    * [OpenCensus with Prometheus and Kubernetes](https://www.slideshare.net/JinwoongKim8/opencensus-with-prometheus-and-kubernetes)
 
 * 2018
   * 4월 SK C&C Cloud Tech 
