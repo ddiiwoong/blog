@@ -293,16 +293,7 @@ defaults:
       comments: true
       share: true
       related: true
-  # _study
-  - scope:
-      path: ""
-      type: study
-    values:
-      layout: posts
-      author_profile: true
-      comments: true
-      share: true
-      related: true
+
   # _ads
   - scope:
       path: ""
