@@ -125,7 +125,7 @@ workflows:
 
 단계별 설명을 위해 부분적으로 설명하도록 하겠다.  
 1. Terraform으로 Batch 배포
-    ```tf
+    ```json
     resource "aws_batch_compute_environment" "default"{ 
       compute_environment_name = "env_fetch_and_run" 
       compute_resources { 
@@ -162,7 +162,7 @@ workflows:
     * service_role : (필수) AWS Batch가 다른 AWS 서비스를 호출 할수있게 해주는 IAM Role(ARN)
     * type : (필수) MANAGED나 UNMANAGED를 선택할 수 있고, MANAGED의 경우 compute_resources에 세부 사항을 설정할 수 있다.  
 
-    ```tf
+    ```json
     resource "aws_batch_job_definition" "default" {
       name = "fetch_and_run" 
       type = "container"
