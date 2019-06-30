@@ -37,8 +37,8 @@ CI/CD Pipeline구성이 주 목적으로 Application구현은 포스팅 내용�
 * Code Repository : Github
 * CI : CircleCI
 * Registry : AWS ECR
-* CD : CircleCI, Terraform, ArgoCD
-* Target : AWS EKS, ECS, Batch(ECS)
+* CD : CircleCI
+* Target : AWS Batch(ECS)
 * Notification : Slack
 
 이번 데모에서는 다음과 같은 시나리오로 진행하려고 한다.  
@@ -79,11 +79,7 @@ Demo Repository : [https://github.com/ddiiwoong/aws-batch-helpers/](https://gith
 [https://www.terraform.io/docs/providers/aws/index.html](https://www.terraform.io/docs/providers/aws/index.html)  
 
 선언적 인프라스트럭처 관리 도구로 많이 사용하고 있는 도구이며 Docs와 블로그 자료가 많은 관계로 따로 설명하지 않겠다.  
-이번 포스트에서는 AWS Batch를 생성하는 영역을 Terraform이 담당한다.   
-
-### ArgoCD
-[https://argoproj.github.io/argo-cd/](https://argoproj.github.io/argo-cd/)  
-선언적 CD를 구현하기 위한 Kubernetes를 위한 GitOps Tools
+이번 포스트에서는 AWS Batch를 생성하는 영역을 Terraform이 담당한다.  
 
 ## CircleCI Config 작성
 ```yaml
@@ -111,15 +107,12 @@ jobs:
           name: Update AWS Batch Job
           command: |
             aws batch register-job-definition --job-definition-name fetch_and_run --type container --container-properties '{ "image": "823928750534.dkr.ecr.ap-northeast-2.amazonaws.com/fetch_and_run:v20190623", "vcpus": 1, "memory": 512}'
-          # echo $AWS_ECR_ACCOUNT_URL/$AWS_RESOURCE_NAME_PREFIX:${CIRCLE_SHA1}
 workflows:
   build-and-deploy:
     jobs:
       - aws-ecr/build-and-push-image:
           repo: $AWS_RESOURCE_NAME_PREFIX
           tag: v20190623
-          # create-repo: true
-          # dockerfile: Dockerfile
       - sh-s3-upload:
           name: sh-s3-upload
           requires:
@@ -128,17 +121,11 @@ workflows:
           name: deploy-batch
           requires:
             - sh-s3-upload
-      # - aws-ecs/deploy-service-update:
-      #     requires:
-      #       - sh-s3-upload
-      #     family: "${AWS_RESOURCE_NAME_PREFIX}-service"
-      #     cluster-name: "${AWS_RESOURCE_NAME_PREFIX}-cluster"
-      #     container-image-name-updates: "container=${AWS_RESOURCE_NAME_PREFIX}-service,image-and-tag=${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${AWS_RESOURCE_NAME_PREFIX}:${CIRCLE_SHA1}"
 ```
 
 단계별 설명을 위해 부분적으로 설명하도록 하겠다.  
 1. Terraform으로 Batch 배포
-    ```terraform
+    ```
     resource "aws_batch_compute_environment" "default"{ 
       compute_environment_name = "env_fetch_and_run" 
       compute_resources { 
@@ -175,7 +162,7 @@ workflows:
     * service_role : (필수) AWS Batch가 다른 AWS 서비스를 호출 할수있게 해주는 IAM Role(ARN)
     * type : (필수) MANAGED나 UNMANAGED를 선택할 수 있고, MANAGED의 경우 compute_resources에 세부 사항을 설정할 수 있다.  
 
-    ```terraform
+    ```
     resource "aws_batch_job_definition" "default" {
       name = "fetch_and_run" 
       type = "container"
@@ -287,4 +274,4 @@ workflows:
 
 ECS나 Batch로 배포는 CircleCI를 통해 직접 배포를 하고 EC2나 EKS로의 배포는 Terraform 및 ArgoCD를 통해 배포를 진행하는 방식이다.  
 
-다음번 포스팅에는 CircleCI와 ArgoCD를 활용한 EKS기반 배포과정을 공유할 예정이다.  
+다음번 포스팅에는 위 그림 기반으로 CircleCI와 ArgoCD를 활용하여 EKS기반 배포과정을 정리할 예정이다.  
