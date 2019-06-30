@@ -125,7 +125,7 @@ workflows:
 
 단계별 설명을 위해 부분적으로 설명하도록 하겠다.  
 1. Terraform으로 Batch 배포
-    ```
+    ```tf
     resource "aws_batch_compute_environment" "default"{ 
       compute_environment_name = "env_fetch_and_run" 
       compute_resources { 
@@ -162,7 +162,7 @@ workflows:
     * service_role : (필수) AWS Batch가 다른 AWS 서비스를 호출 할수있게 해주는 IAM Role(ARN)
     * type : (필수) MANAGED나 UNMANAGED를 선택할 수 있고, MANAGED의 경우 compute_resources에 세부 사항을 설정할 수 있다.  
 
-    ```
+    ```tf
     resource "aws_batch_job_definition" "default" {
       name = "fetch_and_run" 
       type = "container"
@@ -254,21 +254,22 @@ workflows:
 ## CircleCI 실행
 빌드 및 배포과정을 간단하게 설명하면 코드가 업데이트되면 CircleCI는 해당 저장소의 `.circleci/config.yml` 을 기준으로 빌드 및 배포를 시작하게 된다.  
 
-## Readme에 Build Status Badge 달기
+## README.md에 Build Status Badge 달기
 [https://circleci.com/docs/2.0/status-badges/](https://circleci.com/docs/2.0/status-badges/)  
 
 ![badge](/images/circle-badge.png)
-위 링크와 설정을 참고하여 아래와 같이 Build Statud Badge를 달 수 있다.  
-[https://github.com/ddiiwoong/aws-batch-helpers](https://github.com/ddiiwoong/aws-batch-helpers)
+위 링크와 설정을 참고하여 아래 그림과 같이 Build Statud Badge를 달 수 있다.  
 
 ![badge](/images/circle-badge-ss.png)
 
 ## 정리
-이번에는 CircleCI를 가지고 GitOps와 CI/CD를 구성하는 데모를 진행하였다.  
+이번에는 CircleCI를 가지고 AWS Batch job을 구성하는 데모를 진행하였다.  
 
-#### CI/CD Pipeline 시나리오
+얼마전인가에도 [어형부형](https://github.com/leoh0)님께서도 언급하신 선언적인 구성 기반에 최대한 serverless 환경에서의 배포를 추구하게 되다 보니 아래와 같은 `CI/CD Pipeline 시나리오`를 구상하게 되었다.  
+
 ![cicd](/images/circlecicd.png)
-새로운 기능의 브랜치(New Feature)가 Git에 push되면 빌드와 테스트가 진행되는 동안 외부 개발자가 PR을 작성하면 동료 및 담당 상급자에게 코드 리뷰를 받게 된다.  
+
+새로운 기능의 브랜치(New Feature)가 Git에 push되면 빌드와 테스트가 트리거되어 자동으로 진행되고 동시에 개발자가 PR을 작성하면 동료 및 담당 상급자에게 코드 리뷰를 받게 된다.  
 
 리뷰가 통과되고 CircleCI에서 빌드가 성공했다면 승인단계를 통해 Merge를 하고 CircleCI 가 한 번 더 빌드를 시작하고 배포까지 수행하게 된다.  
 
