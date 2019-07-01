@@ -17,6 +17,8 @@ tags:
   - AWS Batch
 ---
 
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/X8X1W6OZ)
+
 [이전 포스팅](https://ddii.dev/devops/circleci/)에서 EKS 클러스터와 어플리케이션 배포 및 테스트를 간단하게 해봤다.  이번에는 AWS ECS 또는 AWS Batch Application을 CircleCI를 통해 배포 및 업데이트 하는 것을 알아본다.  
 
 ## Application 요구사항
@@ -276,3 +278,5 @@ workflows:
 ECS나 Batch로 배포는 CircleCI를 통해 직접 배포를 하고 EC2나 EKS로의 배포는 Terraform 및 ArgoCD를 통해 배포를 진행하는 방식이다.  
 
 다음번 포스팅에는 위 그림 기반으로 CircleCI와 ArgoCD를 활용하여 EKS기반 배포과정을 정리할 예정이다.  
+
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/X8X1W6OZ)
