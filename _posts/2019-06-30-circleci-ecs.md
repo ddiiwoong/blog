@@ -65,7 +65,7 @@ Demo Repository : [https://github.com/ddiiwoong/aws-batch-helpers/](https://gith
 * Git, Registry, CD영역의 확장성 고려
 * AWS Console 접속 최소화
 * 쉽고 단순하게 빌드 환경구성
-* 소규모 프로젝트 시작이 빠르게 시작 가능
+* 소규모 프로젝트 빠르게 시작 가능
 
 ### Amazon Elastic Container Registry (ECR)
 개인적으로 Registry는 구축형보다는 Managed서비스를 사용하는것이 좋다고 보기 때문에 Webhook을 Native하게 지원하는 DockerHub도 대체 가능하다고 생각한다.  
