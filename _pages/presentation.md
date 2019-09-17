@@ -14,6 +14,8 @@ author_profile: true
     * [Knative로 서버리스 워크로드 구현](https://www.slideshare.net/JinwoongKim8/knative)
   * 6월 Korea DevOps MeetUP '19 - 4월 발표 수정
     * [OpenCensus with Prometheus and Kubernetes](https://www.slideshare.net/JinwoongKim8/opencensus-with-prometheus-and-kubernetes)
+  * 7월 CircleCI Korea User Group 2nd Meetup
+    * [Data(?)Ops with CircleCI](https://www.slideshare.net/JinwoongKim8/dataops-with-circleci)
 
 * 2018
   * 4월 SK C&C Cloud Tech 
