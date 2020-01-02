@@ -16,6 +16,10 @@ author_profile: true
     * [OpenCensus with Prometheus and Kubernetes](https://www.slideshare.net/JinwoongKim8/opencensus-with-prometheus-and-kubernetes)
   * 7월 CircleCI Korea User Group 2nd Meetup
     * [Data(?)Ops with CircleCI](https://www.slideshare.net/JinwoongKim8/dataops-with-circleci)
+  * 9월 AWS Korea User Group 판교소모임
+    * [DataOps with CircleCI](https://www.slideshare.net/JinwoongKim8/dataops-with-circleci)
+  * 11월 사내 Open Tech Lounge 발표
+    * 멀티클라우드 구현을 위한 IaC 연구
 
 * 2018
   * 4월 SK C&C Cloud Tech 
