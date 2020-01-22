@@ -5,6 +5,11 @@ permalink: /presentation/
 author_profile: true
 ---
 
+* 2020 
+  * 1월 AWS Community Day 2020
+    * [AWS기반 서버리스 데이터레이크 구축하기](https://www.slideshare.net/awskr/aws-community-day-2020-aws)
+
+
 * 2019
   * 4월 AWS Korea User Group 판교소모임
     * [Amazon EKS Workshop 살펴보기](https://www.slideshare.net/JinwoongKim8/eks-workshop-140043415)
