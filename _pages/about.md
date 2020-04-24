@@ -10,14 +10,22 @@ author_profile: true
 기술이야기 듣는것, 말하는것, 공부하는것 좋아합니다.  
 저의 모든 행동, 말, 글이 주변 모든분들에게 동기부여가 되고 영감을 주는 촉매(觸媒)같은 사람이 되고 싶습니다.  
 
+## NexCloud
+
+[NexCloud](https://www.nexcloud.co.kr/)
+
+* 2020.4 ~
+* [NexClipper](https://www.nexclipper.io/) Product Owner
+
 ## SK Holdings C&C
 
-* 2019.1 ~ 
-  * BM Innovation Leading division (BM혁신추진단)
+* 2019.1 ~ 2020.4
+  * BM Innovation Leading division
     * Data Tech Cell Platform Engineer
-       * Machine Learning Platform 설계/구축
-       * Data Lake Platform 설계/구축
-       * Content Management System 설계/구축
+       * Data Lake Platform 설계/구축/운영
+       * Content Management System 설계/구축/운영
+       * Platform Management System 설계
+       * Data Marketplace 설계
    * Tech.
      * Public Cloud : AWS, IBM Cloud
 
