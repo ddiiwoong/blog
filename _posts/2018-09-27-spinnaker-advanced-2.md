@@ -18,7 +18,7 @@ tags:
 
 # Spinnaker on Kubernetes
 
-이전 포스팅 [Spinnaker on Kubernetes #1](https://ddiiwoong.github.io/2018/spinnaker-advanced-1/)에서 검토할때는 많이 개념을 이해하기 어려웠던것 같지만 어느정도 시간이 지났고 또 몇일 후에 발표도 있어서 다른 이야기를 해보고자 한다.  
+이전 포스팅 [Spinnaker on Kubernetes #1](https://ddii.dev/kubernetes/spinnaker-advanced-1/)에서 검토할때는 많이 개념을 이해하기 어려웠던것 같지만 어느정도 시간이 지났고 또 몇일 후에 발표도 있어서 다른 이야기를 해보고자 한다.  
 
 지난 포스팅에 대충 집고 넘어간 용어들에 대한 정리를 다시 하고 기본적인 사상들을 정리해보고자 한다. 허접한 플랫폼 엔지니어 생각이니 언제든 다른 의견을 환영하는 바이다. 
 
