@@ -7,8 +7,9 @@ author_profile: true
 
 * 2020 
   * 1월 AWS Community Day 2020
-    * [AWS기반 서버리스 데이터레이크 구축하기](https://www.slideshare.net/awskr/aws-community-day-2020-aws)
-
+    * [AWS기반 서버리스 데이터레이크 구축하기](https://www.slideshare.net/awskr/aws-community-day-2020-aws)   
+  * 7월 PromCon Online 2020 Lightning Talks Day 2
+    * [MetricOps](https://youtu.be/xOya8uWrVk0?t=353)
 
 * 2019
   * 4월 AWS Korea User Group 판교소모임
