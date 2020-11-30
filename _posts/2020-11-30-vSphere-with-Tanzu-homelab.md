@@ -20,14 +20,11 @@ tags:
 
 ## Tanzu
 
-https://tanzu.vmware.com/content/blog/simplify-your-approach-to-application-modernization-with-4-simple-editions-for-the-tanzu-portfolio
-
-
+[https://tanzu.vmware.com/content/blog/simplify-your-approach-to-application-modernization-with-4-simple-editions-for-the-tanzu-portfolio](https://tanzu.vmware.com/content/blog/simplify-your-approach-to-application-modernization-with-4-simple-editions-for-the-tanzu-portfolio)  
 
 Tanzu는 애플리케이션을 개발, 구동, 운영하는 모든 컨테이너 환경을 통합 관리하는 쿠버네티스를 상용화 한 제품으로 이해하는 것이 가장 쉽다. 
 
-![tanzu](http://www.bikorea.net/news/photo/202004/26520_15547_3837.jpg)  
-http://www.bikorea.net/news/photo/202004/26520_15547_3837.jpg  
+![tanzu](/images/tanzu.png)
 (출처 : VM웨어 코리아 발표자료 갈무리)
 
 포트폴리오를 간단히 살펴보면 기존 인프라를 구성하는 레이어인 vSphere 위에 `VMware Tanzu Kubernetes Grid`를 볼 수 있다.  
@@ -46,7 +43,7 @@ http://www.bikorea.net/news/photo/202004/26520_15547_3837.jpg
 
 * SODIMM DDR4 32G PC4-25600 (TeamGroup)
 
-  해당 제품은 가성비로 가장 저렴하게 살 수 있는 국내 워런티가 가능한 SODIMM 메모리로 32G 2개를 구매했으며 네이버 검색으로 2개 25만원 정도로 구매했다. 
+  해당 제품은 가성비로 가장 저렴하게 살 수 있는 국내 워런티가 가능한 SODIMM 메모리로 32G 2개를 구매했으며 네이버 검색으로 2개 25만원 정도로 구매했다. ddd
 
 * 2.5 SSD (ADATA SU655 240GB)
   ESXi 서버 설치용으로 사용하기 위해 기존에 갖고 있던 ADATA SU655 240GB를 사용했고 현재 3.5만원 정도에 구매가능하다. 
@@ -56,7 +53,7 @@ http://www.bikorea.net/news/photo/202004/26520_15547_3837.jpg
 
 * Gigabit USB Lancard (tplink UE300C)
   ESXi 7.0버전에서 온보드 NIC 인식이 불가능한 이유로 별도로 기기비트 유선 랜카드를 구매했다. 1.5만원 정도에 구매가능 하고 3년 보증이 되는 TPLINK제품으로 선택하였다.  
-  https://coupa.ng/bM0lN8 -> 해당 링크를 통해 구매하면 쿠팡 파트너스로 적립금이 지급되니 참고하기 바란다.
+  [https://coupa.ng/bM0lN8](https://coupa.ng/bM0lN8) -> 해당 링크를 통해 구매하면 쿠팡 파트너스로 적립금이 지급되니 참고하기 바란다.
 
 실제 위 스펙으로 대충 구매를 진행하게 되면 `104만원` 정도 소요가 된것으로 예상된다. 환율이나 할인을 전혀 받지 않고 구매를 한다고 가정해도 약 8코어 16스레드 64GB 머신을 `110만원` 정도로 구성이 가능하다. 물론 서버나 워크스테이션이나 NUC기반으로도 구성이 가능하지만 전력소모와 집안을 차지하는 부피를 고려하면 금액적으로 메리트가 있다고 생각한다.
 
@@ -170,20 +167,20 @@ https://nuanceofiqlusion.files.wordpress.com/2020/07/ventoymainmenu-e15944849325
 
 
 이후 친숙한 DCUI(Direct Console User Interface)로 접속하여 Static IP 설정과 network 테스트를 진행한다.
-![esxi](../images/esxi7.png)
+![esxi](/images/esxi7.png)
 
 
 ### vSphere Web Client 접속
 
 설정한 Static IP로 접속하여 환경을 점검한다.  
 
-![nw](../images/esxi_network.png)
+![nw](/images/esxi_network.png)
 
 Management Network에 vSwitch0이 구성된 것을 확인할 수 있다.  
 
 그리고 설치한 M.2 SSD로 datastore2를 추가하여 vCenter 설치를 진행하도록 한다.
 
-![storage](../images/esxi_storage.png)
+![storage](/images/esxi_storage.png)
 
 ## Router 설치 및 환경 구성
 
