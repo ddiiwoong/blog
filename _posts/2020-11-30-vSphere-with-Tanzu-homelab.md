@@ -482,12 +482,5 @@ PS C:\esxi\vsphere-with-tanzu-homelab-scripts> .\setup_vcsa.ps1
 설치가 완료되면 신규UI로 접속이 가능해진다. 이제부터는 VCSA로 직접 접속이 가능하다.  
 기본 로그인 아이디는 `administrator@vsphere.local`로 `vcsa.tanzu.local.json` 에서 설정한 패스워드로 접속하면 vCenter 기반의 Client UI를 확인할 수 있다.  
 
-![vcsa](/images/vcsa.png)
+글이 길어지는 관계로 VDS(vSphere Distributed Switch)를 구성하는 이후 부분은 다음 포스팅에서 계속 이어나갈 예정이다. 
 
-## VDS(vSphere Distributed Switch) 구성
-
-이번 구성의 경우에는 usb nic를 하나만을 사용해서 진행하기 때문에 위에서 설정했던 3개의 네트워크(Management, Frontend, Workload)로 분리하기 위해 VDS를 신규로 생성하고 기존 네트워크 어댑터를 변경하는 작업을 수행해야 한다.  
-
-이어서 계속 
-
-## 정리
