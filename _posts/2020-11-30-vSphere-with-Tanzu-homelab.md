@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "vSphere with Tanzu homelab running on ASUS PN50"
+title: "vSphere with Tanzu homelab running on ASUS PN50 (1/2)"
 comments: true
 classes: wide
 description: "이번 포스트에서는 Tanzu Cluster를 단일 홈랩 vSphere 서버에 올려본다"
@@ -426,8 +426,6 @@ root@vcsa [ ~ ]# chsh -s /bin/bash
 
 * [https://www.virtuallyghetto.com/2020/04/deploying-a-minimal-vsphere-with-kubernetes-environment.html](https://www.virtuallyghetto.com/2020/04/deploying-a-minimal-vsphere-with-kubernetes-environment.html)
 
-그리고 VCSA VM을 shutdown하고 메모리를 12GB에서 8GB로 변경하고 재기동한다. 
-
 ```yaml
 logging:
   level: debug
@@ -480,7 +478,17 @@ PS C:\esxi\vsphere-with-tanzu-homelab-scripts> .\setup_vcsa.ps1
 ```
 
 설치가 완료되면 신규UI로 접속이 가능해진다. 이제부터는 VCSA로 직접 접속이 가능하다.  
-기본 로그인 아이디는 `administrator@vsphere.local`로 `vcsa.tanzu.local.json` 에서 설정한 패스워드로 접속하면 vCenter 기반의 Client UI를 확인할 수 있다.  
+기본 로그인 아이디는 `administrator@vsphere.local`로 `vcsa.tanzu.local.json` 에서 설정한 패스워드로 접속하면 vCenter 기반의 Client UI를 확인할 수 있다. 정상적으로 클러스터에 연결된 ESXi 호스트 정보를 확인할 수 있다.  
+
+![VCSA](/images/vcsa_home.png)
+
+
+
+## 정리
+
+일단 아주 작은 하드웨어로 가성비 좋은 클러스터를 구축할 수 있는 PN50으로 Tanzu 클러스터 구성을 하기 위한 기초작업이 완료되었다.  
+
+오랜만에 vSphere 제품을 사용하게 되었는데 일단 예전과는 달리 제품의
 
 글이 길어지는 관계로 VDS(vSphere Distributed Switch)를 구성하는 이후 부분은 다음 포스팅에서 계속 이어나갈 예정이다. 
 
