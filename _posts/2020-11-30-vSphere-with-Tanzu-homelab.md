@@ -488,7 +488,5 @@ PS C:\esxi\vsphere-with-tanzu-homelab-scripts> .\setup_vcsa.ps1
 
 일단 아주 작은 하드웨어로 가성비 좋은 클러스터를 구축할 수 있는 PN50으로 Tanzu 클러스터 구성을 하기 위한 기초작업이 완료되었다.  
 
-오랜만에 vSphere 제품을 사용하게 되었는데 일단 예전과는 달리 제품의
-
 글이 길어지는 관계로 VDS(vSphere Distributed Switch)를 구성하는 이후 부분은 다음 포스팅에서 계속 이어나갈 예정이다. 
 
