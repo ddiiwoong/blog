@@ -111,7 +111,6 @@ $HAProxyOSPassword = "VMware1!"
 $HAProxyPort = "5556"
 $HAProxyUsername = "wcp"
 $HAProxyPassword = "VMware1!"
-
 ...
 ```
 
@@ -121,9 +120,26 @@ $HAProxyPassword = "VMware1!"
 
 이후 HAProxy VM내에서 여러 인터페이스에서 `Reverse Path Filtering`을 `Disable`하기 위해 다음 스크립트를 실행한다. 
 
-> `Reverse Path Filtering`는 기본적으로 하나의 인스턴스에서 여러개의 인터페이스로 들어오는 패킷의 소스IP에 대해서 라우팅 테이블을 확인한 후 패킷이 들어온 동일한 인터페이스로 다시 나가는지 확인하는 것을 말한다. `rp_filter`가 1로 설정이 되어있으면, 특정 인터페이스로 들어온 패킷 정보와 OS의 FIB(Forward Information Base)에 정의된 정보와 일치하지 않을경우, 들어온 패킷을 버리는 기능을 하기 때문에 위 스크립트를 통해 rp_filter 값을 모두 0으로 변경하는 것이다. 자세한 내용은 [https://access.redhat.com/solutions/53031](https://access.redhat.com/solutions/53031)를 참고하자.
-
 *[setup_haproxy.sh](https://github.com/lamw/vsphere-with-tanzu-homelab-scripts/blob/master/setup_haproxy.sh)  
+
+```sh
+#!/bin/bash
+
+touch /etc/sysctl.d/999-tanzu.conf
+chmod +x /etc/sysctl.d/999-tanzu.conf
+
+IFS=$'\n'
+for i in $(sysctl -a | grep rp_filter | grep 1);
+do
+    SYSCTL_SETTING=$(echo ${i} | awk '{print $1}')
+    # Update live system
+    sysctl -w ${SYSCTL_SETTING}=0
+    # Persist settings upon reboot
+    echo "${SYSCTL_SETTING}=0" >> /etc/sysctl.d/999-tanzu.conf
+done
+```
+
+> `Reverse Path Filtering`는 기본적으로 하나의 인스턴스에서 여러개의 인터페이스로 들어오는 패킷의 소스IP에 대해서 라우팅 테이블을 확인한 후 패킷이 들어온 동일한 인터페이스로 다시 나가는지 확인하는 것을 말한다. `rp_filter`가 1로 설정이 되어있으면, 특정 인터페이스로 들어온 패킷 정보와 OS의 FIB(Forward Information Base)에 정의된 정보와 일치하지 않을경우, 들어온 패킷을 버리는 기능을 하기 때문에 위 스크립트를 통해 rp_filter 값을 모두 0으로 변경하는 것이다. 자세한 내용은 [https://access.redhat.com/solutions/53031](https://access.redhat.com/solutions/53031)를 참고하자.
 
 ## Content Library 구성
 
