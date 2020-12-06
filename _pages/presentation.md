@@ -10,6 +10,8 @@ author_profile: true
     * [AWS기반 서버리스 데이터레이크 구축하기](https://www.slideshare.net/awskr/aws-community-day-2020-aws)   
   * 7월 PromCon Online 2020 Lightning Talks Day 2
     * [MetricOps](https://youtu.be/xOya8uWrVk0?t=353)
+  * 10월 Cloud Native Community Groups Seoul 2020
+    * [Prometheus Project Journey](https://www.slideshare.net/JinwoongKim8/prometheus-project-journey)
 
 * 2019
   * 4월 AWS Korea User Group 판교소모임
