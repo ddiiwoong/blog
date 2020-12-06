@@ -490,3 +490,4 @@ PS C:\esxi\vsphere-with-tanzu-homelab-scripts> .\setup_vcsa.ps1
 
 글이 길어지는 관계로 VDS(vSphere Distributed Switch)를 구성하는 이후 부분은 다음 포스팅에서 계속 이어나갈 예정이다. 
 
+> 다음글 - [vSphere with Tanzu homelab running on ASUS PN50 (2/2)](https://ddii.dev/kubernetes/vSphere-with-Tanzu-homelab-2/)
