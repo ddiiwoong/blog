@@ -18,7 +18,7 @@ tags:
 
 지난글에 이어 이번에는 네트워크 구성하는 방법과 vSphere Cluster에 추가적인 Kubernetes 클러스터를 배포하는 것에 대해 이야기 하고자 한다. 이번 글도 지난글과 동일하게 [virtuallyGhetto](https://www.virtuallyghetto.com/) 블로그 포스팅을 참고하여 그대로 진행한 내용이라고 보면 된다.
 
-> 이전글 - [vSphere with Tanzu homelab running on ASUS PN50 (1/2)(https://ddii.dev/kubernetes/vSphere-with-Tanzu-homelab/)
+> 이전글 - [vSphere with Tanzu homelab running on ASUS PN50 (1/2)](https://ddii.dev/kubernetes/vSphere-with-Tanzu-homelab/)
 
 [https://www.virtuallyghetto.com/2020/11/complete-vsphere-with-tanzu-homelab-with-just-32gb-of-memory.html](https://www.virtuallyghetto.com/2020/11/complete-vsphere-with-tanzu-homelab-with-just-32gb-of-memory.html)
 
