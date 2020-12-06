@@ -218,7 +218,7 @@ New-WorkloadManagement2 @vSphereWithTanzuParams
 
 생성된걸 확인한 후 브라우저에 해당 클러스터의 Control Plane IP (https://10.10.0.64)로 접속하면 OS별(Linux, MacOS, Windows)로 CLI 플러그인을 설치할 수 있다.  
 
-설치 및 PATH 설정을 진행하고 아래와 같이 Control Plane으로 CLI 로그인을 하면 현재 설정된 Context
+설치 및 PATH 설정을 진행하고 아래와 같이 Control Plane으로 CLI 로그인을 하면 현재 설정된 Context 확인이 가능하다. 
 
 ```sh
 > kubectl vsphere login --server=10.10.0.64 -u administrator@vsphere.local --insecure-skip-tls-verify
@@ -250,11 +250,11 @@ NAME                               STATUS   ROLES    AGE     VERSION
 422faddc15554b09d82907c0dfb57752   Ready    master   4d21h   v1.18.2-6+38ac483e736488
 ```
 
-nexclipper namespace로 context를 전환하고 node를 확인하면 다음과 같이 master node를 2개 확인할 수 있는데 이는 `nexclipper`라는 네임스페이스를 총괄하는 super Master 같은 개념이라고 볼 수 있다. 처음에 클러스터 배포전에 Namespace 리소스를 만들길래 다소 헷갈리긴 했지만 Tanzu에서의 Namespace는 기존 쿠버네티스의 리소스를 논리적으로 나누는 컨셉이 아닌 정해진 리소스와 유저, 그룹의 권한을 먼저 Namespace로 할당하고 그담에 다시 조직이나 어플리케이션 별로 Kubernetes Workload를 다시 제공하는 컨셉이라고 보면된다.  
+nexclipper namespace로 context를 전환하고 node를 확인하면 master node를 2개 확인할 수 있는데 이는 `nexclipper`라는 네임스페이스를 총괄하는 Super Master(Control Plane) 같은 개념이라고 볼 수 있다. 처음에 클러스터 배포전에 Namespace 리소스를 만들길래 다소 헷갈리긴 했지만 Tanzu에서의 Namespace는 기존 쿠버네티스의 리소스를 논리적으로 나누는 컨셉이 아닌, 정해진 리소스와 유저와 그룹의 권한을 먼저 Namespace로 할당하고 그담에 다시 조직이나 어플리케이션 별로 Kubernetes Workload를 다시 제공하는 컨셉이라고 보면된다.  
 
 최근에 `SKT`나 `Kakao Enterprise` 처럼 쿠버네티스 클러스터의 라이프사이클을 쿠버네티스로 관리하는 컨셉으로 이해하면 좋다. 아래 그림을 참고하면 쉽게 이해할 수 있을 것이다.  
 
-![tanzu](https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/images/GUID-DF8905E1-C098-4882-BFC1-B0BAC668B424-high.png)
+![tanzu](https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/images/GUID-DF8905E1-C098-4882-BFC1-B0BAC668B424-high.png)  
 참조 : https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/images/GUID-DF8905E1-C098-4882-BFC1-B0BAC668B424-high.png
 
 TanzuKubernetesCluster CRD를 통해 클러스터를 신규로 생성한다.  
