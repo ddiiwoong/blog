@@ -166,7 +166,8 @@ ESXi 부팅 이미지 제작은 [rufus](https://rufus.ie/), [ventoy](https://www
 https://nuanceofiqlusion.files.wordpress.com/2020/07/ventoymainmenu-e1594484932538.png  
 
 
-이후 친숙한 DCUI(Direct Console User Interface)로 접속하여 F2모드로 접속하여 Static IP 설정과 network 테스트를 진행한다.
+이후 친숙한 DCUI(Direct Console User Interface)로 접속하여 F2모드로 접속하여 Static IP 설정과 network 테스트를 진행한다.  
+
 ![esxi](/images/esxi7.png)
 
 
@@ -391,7 +392,7 @@ Addresses:  2a02:e980:b5::b7
 
 ```sh
 $ cd VMware-VCSA-all-7.0.1-17004997/
-$ ./vcsa-deploy install --accept-eula --acknowledge-ceip --no-ssl-certificate-verification /mnt/c/esxi/vsphere-with-tanzu-homelab-scripts/
+$ ./vcsa-deploy install --accept-eula --acknowledge-ceip --no-ssl-certificate-verification /mnt/c/esxi/vsphere-with-tanzu-homelab-scripts/vcsa.tanzu.local.json
 ```
 
 vCenter가 설치가 완료된 후 SSH로 접속한다. 기본 Shell이 Bash가 아니므로 `shell` 명령으로 접속한후 `chsh -s /bin/bash`로 기본 Shell을 Bash로 변경한다.  
