@@ -4,7 +4,7 @@ title: "crossplane 활용"
 comments: true
 classes: wide
 description: "crossplane과 terraform 비교"
-draft: true
+published: false
 keywords: "Kubernetes, crossplane, terraform, iac, provisioning"
 categories:
   - Kubernetes
