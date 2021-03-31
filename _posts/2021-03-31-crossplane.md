@@ -58,7 +58,7 @@ helm install crossplane --namespace crossplane-system crossplane-stable/crosspla
 
 설치후에 Crossplane의 상태를 확인한다.  
 
-```
+```sh
 kubectl get all -n crossplane-system
 NAME                                           READY   STATUS    RESTARTS   AGE
 pod/crossplane-54dd944978-2vrks                1/1     Running   0          72s
@@ -73,4 +73,14 @@ replicaset.apps/crossplane-54dd944978                1         1         1      
 replicaset.apps/crossplane-rbac-manager-549c7c6dc9   1         1         1       72s
 ```
 
-위에서 언급했던 Package를 설치하는 방법이 여러가지가 있지만 kubectl을 사용하는 것이 기본이기 때문에 Cr
+위에서 언급했던 Package를 설치하는 방법이 여러가지가 있지만 kubectl을 사용하는 것이 기본이기 때문에 kubectl plugin 형태로 사용하기 위해 CLI를 설치한다.
+
+```sh
+curl -sL https://raw.githubusercontent.com/crossplane/crossplane/master/install.sh | sh
+```
+
+            
+
+            
+
+
