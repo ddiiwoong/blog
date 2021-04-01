@@ -59,7 +59,7 @@ helm install crossplane --namespace crossplane-system crossplane-stable/crosspla
 설치후에 Crossplane의 상태를 확인한다.  
 
 ```sh
-kubectl get all -n crossplane-system
+$ kubectl get all -n crossplane-system
 NAME                                           READY   STATUS    RESTARTS   AGE
 pod/crossplane-54dd944978-2vrks                1/1     Running   0          72s
 pod/crossplane-rbac-manager-549c7c6dc9-f8x5x   1/1     Running   0          72s
@@ -73,13 +73,27 @@ replicaset.apps/crossplane-54dd944978                1         1         1      
 replicaset.apps/crossplane-rbac-manager-549c7c6dc9   1         1         1       72s
 ```
 
-위에서 언급했던 Package를 설치하는 방법이 여러가지가 있지만 kubectl을 사용하는 것이 기본이기 때문에 kubectl plugin 형태로 사용하기 위해 CLI를 설치한다.
+위에서 언급했던 Package를 설치하는 방법이 kubectl을 사용하는 것이 기본이기 때문에 kubectl plugin 형태로 사용하기 위해 CLI를 설치한다.
 
 ```sh
-curl -sL https://raw.githubusercontent.com/crossplane/crossplane/master/install.sh | sh
+$ curl -sL https://raw.githubusercontent.com/crossplane/crossplane/master/install.sh | sh
+kubectl plugin downloaded successfully! Run the following commands to finish installing it:
+
+sudo mv kubectl-crossplane /usr/local/bin
+kubectl crossplane --help
+
+Visit https://crossplane.io to get started. 🚀
+Have a nice day! 👋
+
 ```
 
-            
+원하는 path로 옮기고 나면 `kubectl crossplane`을 실행할 수 있다.  
+
+여기서 XRs(composite resources) 대한 내용을 잘 이해해야 하는데, Crossplane은 인프라를 CRD로 단순히 배포만 하는것이 아니라 우리가 흔히 이야기하는 배포를 진행하고 이후 ansible이나 puppet 같은 도구로 config를 원하는 대로 커스터마이징을 하게 되는데 이런 과정을 다시 추상화한 개념이라고 볼 수 있다.  
+
+예를 들면 DB를 배포하고 비즈니스에 맞는 스키마를 별도의 리소스로 정의를 하고 이를 반영하는것을 XRs(composite resources)라고 말한다. 
+
+### 
 
             
 
