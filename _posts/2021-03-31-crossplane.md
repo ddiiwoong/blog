@@ -25,7 +25,7 @@ tags:
 
 Ubbound라는 웹 기반 crossplane 서비스를 출시했고, 스타트업에 종사하다보니 당연히 펀딩 규모를 확인하게 되는데 2년만에 5명의 개발자가 시리즈 A로 9백만$를 유치할 정도면 어느정도 검증된 솔루션을 가지고 있다는 반증이기도 하다.  
 
-## Crossplane Concepts
+## Crossplane 기본 컨셉
 
 기본적으로 Kubernetes API를 활용한다. 그로 인해 추상화된 기능을 몇가지로 분리해서 Custom Resource([CRDs](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/))로 관리를 하고 있다.  
 
@@ -43,7 +43,7 @@ Ubbound라는 웹 기반 crossplane 서비스를 출시했고, 스타트업에 �
 4. Composing Infrastructure(XRs)
   기본적으로 선언형(Declarative) 컨피그 방식으로 관리가 되는데 예를 들면, 기본적으로 제공되는 AWS API이외에도 구성된 인프라를 관리하는 방식으로 RDS DB엔진 버전이라던지, 스토리지 크기등을 구성할 수 있도록 되어있다. 자세한 내용은 실제 구현할 때 살펴본다.
 
-## Install & Configure
+## 설치 및 구성
 
 일단 클러스터를 준비하자. 아래 진행되는 내용은 Docker Desktop 로컬 클러스터에서 시작한다. 반드시 필요한 구성요소는 Kubernetes Cluster와 Helm 3.0이상 필요하다. 네임스페이스를 생성하고 차트 레포지토리 등록, 업데이트 그리고 crossplane를 설치한다. 
 
@@ -93,8 +93,24 @@ Have a nice day! 👋
 
 예를 들면 DB를 배포하고 비즈니스에 맞는 스키마를 별도의 리소스로 정의를 하고 이를 반영하는것을 XRs(composite resources)라고 말한다. 
 
-### 
+### Configuration Package 설치
 
+Provider와 Configuration을 설치한다. 
+
+```
+kubectl crossplane install configuration registry.upbound.io/xp/getting-started-with-gcp:v1.1.0
+```
+
+provider
+
+```
+$ kubectl get pkg
+NAME                                                          INSTALLED   HEALTHY   PACKAGE                                                  AGE
+configuration.pkg.crossplane.io/xp-getting-started-with-gcp   True        Unknown   registry.upbound.io/xp/getting-started-with-gcp:v1.1.0   28s
+
+NAME                                                 INSTALLED   HEALTHY   PACKAGE                           AGE
+provider.pkg.crossplane.io/crossplane-provider-gcp   True        False     crossplane/provider-gcp:v0.16.0   22s
+```
             
 
 
