@@ -93,24 +93,53 @@ Have a nice day! 👋
 
 예를 들면 DB를 배포하고 비즈니스에 맞는 스키마를 별도의 리소스로 정의를 하고 이를 반영하는것을 XRs(composite resources)라고 말한다. 
 
-### Configuration Package 설치
+### Configuration Package 설치 (GCP기반)
 
-Provider와 Configuration을 설치한다. 
-
+GCP연동을 위한 Provider와 Configuration을 설치한다. 
 ```
 kubectl crossplane install configuration registry.upbound.io/xp/getting-started-with-gcp:v1.1.0
 ```
 
-provider
+provider와 configuration이 구성되고 Health 상태가 정상이 될 때까지 잠시 기다린다.
 
 ```
 $ kubectl get pkg
-NAME                                                          INSTALLED   HEALTHY   PACKAGE                                                  AGE
-configuration.pkg.crossplane.io/xp-getting-started-with-gcp   True        Unknown   registry.upbound.io/xp/getting-started-with-gcp:v1.1.0   28s
-
 NAME                                                 INSTALLED   HEALTHY   PACKAGE                           AGE
-provider.pkg.crossplane.io/crossplane-provider-gcp   True        False     crossplane/provider-gcp:v0.16.0   22s
+provider.pkg.crossplane.io/crossplane-provider-gcp   True        True      crossplane/provider-gcp:v0.16.0   113s
+
+NAME                                                          INSTALLED   HEALTHY   PACKAGE                                                  AGE
+configuration.pkg.crossplane.io/xp-getting-started-with-gcp   True        True      registry.upbound.io/xp/getting-started-with-gcp:v1.1.0   2m4s
 ```
-            
 
+정상적으로 설치가 완료되면 gcp 구성을 위한 CRD를 확인할 수 있다.
 
+```
+$ kubectl get crd | grep "gcp.crossplane"
+bucketpolicies.storage.gcp.crossplane.io                   2021-04-02T07:48:09Z
+bucketpolicymembers.storage.gcp.crossplane.io              2021-04-02T07:48:09Z
+buckets.storage.gcp.crossplane.io                          2021-04-02T07:48:09Z
+cloudmemorystoreinstances.cache.gcp.crossplane.io          2021-04-02T07:48:09Z
+cloudsqlinstances.database.gcp.crossplane.io               2021-04-02T07:48:09Z
+connections.servicenetworking.gcp.crossplane.io            2021-04-02T07:48:08Z
+cryptokeypolicies.kms.gcp.crossplane.io                    2021-04-02T07:48:09Z
+cryptokeys.kms.gcp.crossplane.io                           2021-04-02T07:48:08Z
+gkeclusters.container.gcp.crossplane.io                    2021-04-02T07:48:09Z
+globaladdresses.compute.gcp.crossplane.io                  2021-04-02T07:48:09Z
+keyrings.kms.gcp.crossplane.io                             2021-04-02T07:48:09Z
+networks.compute.gcp.crossplane.io                         2021-04-02T07:48:09Z
+nodepools.container.gcp.crossplane.io                      2021-04-02T07:48:08Z
+providerconfigs.gcp.crossplane.io                          2021-04-02T07:48:08Z
+providerconfigusages.gcp.crossplane.io                     2021-04-02T07:48:09Z
+providers.gcp.crossplane.io                                2021-04-02T07:48:08Z
+serviceaccountpolicies.iam.gcp.crossplane.io               2021-04-02T07:48:09Z
+serviceaccounts.iam.gcp.crossplane.io                      2021-04-02T07:48:09Z
+subnetworks.compute.gcp.crossplane.io                      2021-04-02T07:48:09Z
+topics.pubsub.gcp.crossplane.io                            2021-04-02T07:48:09Z
+```
+`
+GCP 연동을 위해 콘솔로 이동해 Account Keyfile를 생성한다. 일단 GCP Console로 이동해서 Cloud Shell을 실행해서 `PROJECT_ID`와 `NEW_SA_NAME`를 tj
+
+```
+PROJECT_ID=ddii3-291904
+NEW_SA_NAME=crossplane
+```
