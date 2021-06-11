@@ -1,18 +1,17 @@
 ---
 layout: single
-title: "Prometheus로 Synology NAS Monitoring"
+title: "프로메테우스로 시놀로지 NAS 모니터링"
 comments: true
 classes: wide
-description: "Prometheus로 Synology NAS Monitoring"
-published: false
+description: "Prometheus로 시놀로지 NAS Monitoring하는 방법 정리"
 keywords: "Prometheus, Synology, Monitoring, Grafana"
 categories:
-  - Prometheus, Synology
+  - Prometheus, Synology, 시놀로지
 tags:
-  - Prometheus, Synology
+  - Prometheus, Synology, 시놀로지
 ---
 
-이번 포스팅에서는 다들 하나씩 구비하고 있을 시놀로지(Synology) NAS를 자체적으로 모니터링하기 위한 방법중에 Prometheus와 snmp_exporter를 활용해서 모니터링 하는 방법을 정리하고자 함이다.
+이번 포스팅에서는 아재라면 다들 하나씩 구비하고 있을 시놀로지(Synology) NAS를 자체적으로 모니터링하기 위한 방법중에 Prometheus와 snmp_exporter를 활용해서 모니터링 하는 방법을 정리하고자 함이다.
 
 ## 구성방안
 
@@ -29,11 +28,11 @@ tags:
 ![arch](../images/synology/arch.png)  
 
 
-## Synology 모니터링
+## 시놀로지 모니터링
 
-기본적으로 시놀로지 UI에서도 관련된 데이터들을 모두 확인할수 있고 디스크 오류나 전원 등 특별한 이벤트가 발생했을 경우는 별도로 이메일이나 커스텀 스크립트를 통해 알림을 받을 수 있지만 메트릭을 기반으로 하는 특정 상황에서 알림을 받거나 내가 원하는 모니터링 대시보드를 꾸미기 위한 용으로 시놀로지는 SNMP기반의 모니터링을 제공한다. 다른 NMP또는 모니터링 도구등을 사용하기 보다는 실제 SNMP exporter를 구성하고 프로메테우스와 연동을 통해 그라파나 대시보드를 통해 모니터링을 해보는데 목적이 있다.
+기본적으로 시놀로지 UI에서도 관련된 데이터들을 확인할수 있고 디스크 오류나 전원 등 특별한 이벤트가 발생했을 경우는 별도로 이메일이나 커스텀 스크립트를 통해 알림을 받을 수 있지만 메트릭을 기반으로 하는 특정 상황에서 알림을 받거나 내가 원하는 모니터링 대시보드를 꾸미기 위한 용으로 시놀로지는 SNMP기반의 모니터링을 제공한다. 다른 NMS 또는 모니터링 도구등을 사용하기 보다는 업무와 관련있는 실제 SNMP exporter를 구성해보고 프로메테우스와 그라파나 대시보드를 통해 모니터링을 하는데 목적이 있다.
 
-## Synology 설정
+## 시놀로지 설정
 
 ### 사전 요구사항
 - [시놀로지 Docker](https://www.synology.com/en-global/dsm/packages/Docker)
@@ -66,7 +65,7 @@ SNMP 데이터 구조를 여기서 자세히 설명하지는 않겠지만  SNMP 
 기본 config 파일을 `snmp.yml`을 참조하게 되는데 수동으로 작성하는 것이 아니라 generator를 통해 생성하게 된다.  
 [https://github.com/prometheus/snmp_exporter/tree/main/generator](https://github.com/prometheus/snmp_exporter/tree/main/generator)
 
-해당 링크에서 확인할 수 있듯이 generator에서 벤더별 MIB 파일과 generator.yml를 참조해서 빌드, 실행하고 결과값으로 snmp.yml이 생성되게 된다. 따로 만들어도 되지만 Synology에만 해당 파일을 바로 사용할 수 있도록 미리 만들어 두신 분이 계셔서 [그분](https://grafana.com/orgs/tumak)의 그라파나 대시보드를 참조하였다. 그리고 이후 시놀로지 대시보드로도 사용할 예정이다.  
+해당 링크에서 확인할 수 있듯이 generator에서 벤더별 MIB 파일과 generator.yml를 참조해서 빌드, 실행하고 결과값으로 snmp.yml이 생성되게 된다. 따로 만들어도 되지만 시놀로지에만 해당 파일을 바로 사용할 수 있도록 미리 만들어 두신 분이 계셔서 [tumak](https://grafana.com/orgs/tumak)의 그라파나 대시보드를 참조하였다. 그리고 이후 시놀로지 대시보드로도 사용할 예정이다.  
 
 [https://grafana.com/grafana/dashboards/14284](https://grafana.com/grafana/dashboards/14284)
 
