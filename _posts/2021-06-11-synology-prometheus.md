@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "synology monitoring with prometheua and snmp exporter"
+title: "Synology monitoring with Prometheua and snmp exporter"
 comments: true
 classes: wide
 description: "Prometheus로 시놀로지 NAS Monitoring하는 방법 정리"
