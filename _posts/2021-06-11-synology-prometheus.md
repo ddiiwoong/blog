@@ -6,7 +6,7 @@ classes: wide
 description: "Prometheus로 시놀로지 NAS Monitoring하는 방법 정리"
 keywords: "Prometheus, Synology, Monitoring, Grafana"
 categories:
-  - Prometheus, Synology, 시놀로지
+  - prometheus
 tags:
   - Prometheus, Synology, 시놀로지
 ---
