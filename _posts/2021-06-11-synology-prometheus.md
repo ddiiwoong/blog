@@ -11,7 +11,7 @@ tags:
   - Prometheus, Synology, 시놀로지
 ---
 
-이번 포스팅에서는 아재라면 다들 하나씩 구비하고 있을 시놀로지(Synology) NAS를 자체적으로 모니터링하기 위한 방법중에 Prometheus와 snmp_exporter를 활용해서 모니터링 하는 방법을 정리하고자 함이다.
+이번 포스팅에서는 아재라면 다들 하나씩 구비하고 있을 시놀로지(Synology) NAS를 Prometheus와 snmp_exporter를 활용해서 모니터링 하는 방법을 정리한다.
 
 ## 구성방안
 
