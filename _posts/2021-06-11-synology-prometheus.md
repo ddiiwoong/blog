@@ -25,7 +25,7 @@ tags:
 - SNMP Exporter : SNMP 기반 디바이스의 모니터링 데이터를 Expose
 - Grafana : 시각화 도구
 
-![arch](../images/synology/arch.png)  
+![arch](/images/synology/arch.png)  
 
 
 ## 시놀로지 모니터링
@@ -44,7 +44,7 @@ tags:
 
 시놀로지는 기본적으로 SNMP 설정이 비활성화 상태이기 때문에 변경이 필요하다. 아래 그림과 같이 시놀로지의 제어판 - 터미널 및 SNMP - SNMP탭 으로 이동해서 SNMP 서비스를 활성화를 체크하고 이후 snmp exporter 설정에서 사용될 community값을 원하는 값으로 변경한 후 저장한다.  
 
-![snmp](../images/synology/snmp.png)
+![snmp](/images/synology/snmp.png)
 
 그럼 이제 시놀로지는 외부 통신을 위한 Port인 UDP 161 port로 snmpd을 실행하게 된다. 
 
@@ -212,13 +212,13 @@ docker-compose up -d
 
 본인의 `http://<시놀로지 IP>:9090/targets` 으로 접속해서 3개의 target이 정상인지 확인한다. 그리고 표현식 브라우저로 돌아와서 `node_cpu_seconds_total` 과 `diskModel`을 통해 두개의 exporter에서 데이터가 수집되고 있는지 확인할 수 있다. `diskModel`은 시놀로지에 장착된 하드디스크 모델 정보를 보여주는 메트릭이다.  
 
-![diskmodel](../images/synology/diskmodel.png)
+![diskmodel](/images/synology/diskmodel.png)
 
 그라파나 대시보드는 `http://<시놀로지 IP>:3000` 로 접속해서 초기 계정인 `admin:admin`을 입력하면 다음과 같이 기본 화면을 볼수 있다. 여기서 좌측의 기어모양 메뉴(Configuration)의 `Data Sources`를 클릭하고 프로메테우스 데이터소스를 등록한다.  
 
 Docker Compose로 실행할 때 아래와 같이 `prometheus` 이름으로 실행했기 때문에 HTTP URL에 `prometheus:9090`을 입력하고 `Save & Test`로 데이터 소스를 저장한다.  
 
-![grafana](../images/synology/grafana.png)
+![grafana](/images/synology/grafana.png)
 
 ## 시놀로지 대시보드 구성
 
@@ -226,7 +226,7 @@ Docker Compose로 실행할 때 아래와 같이 `prometheus` 이름으로 실�
 
 좌측의 + 메뉴(Create)의 `Import`를 클릭하고 위 대시보드 ID `14284`를 입력하고 등록하면 아래와 같이 시놀로지의 모니터링 대시보드를 확인할 수 있다. 
 
-![synology](../images/synology/synology.png)
+![synology](/images/synology/synology.png)
 
 ## 정리
 
