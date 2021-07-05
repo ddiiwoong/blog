@@ -5,6 +5,12 @@ permalink: /presentation/
 author_profile: true
 ---
 
+* 2021
+  * 4월 클라우드 네이티브를 위한 프로메테우스와 옵저버빌리티 웨비나
+    * [클라우드 네이티브를 위한 프로메테우스와 옵저버빌리티](https://bylineplus.com/archives/webinar/11636)
+  * 6월 SK University
+    * `Prometheus and Grafana` 온라인 강의
+
 * 2020 
   * 1월 AWS Community Day 2020
     * [AWS기반 서버리스 데이터레이크 구축하기](https://www.slideshare.net/awskr/aws-community-day-2020-aws)   
